@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v2v.tech - Professional Migration Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- OpenStreetMap Dependencies -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <svg width="180" height="40" viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Left angle bracket -->
+                    <path d="M20 10L10 20L20 30" stroke="#0066CC" stroke-width="2.5" stroke-linecap="round"/>
+                    <!-- Right angle bracket -->
+                    <path d="M160 10L170 20L160 30" stroke="#0066CC" stroke-width="2.5" stroke-linecap="round"/>
+                    <!-- V2V.TECH text -->
+                    <text x="35" y="27" font-family="Inter" font-weight="700" font-size="22" fill="#333333">V2V.TECH</text>
+                </svg>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#benefits">Benefits</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Expert Migration Solutions for Your IT Environment</h1>
+                <p>Specialized in V2V, P2V, and cloud migration technologies to optimize your virtualization infrastructure</p>
+                <a href="#contact" class="btn">Get Started</a>
+            </div>
+            <div class="hero-image">
+                <svg width="100%" height="auto" viewBox="0 0 500 300" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Server Racks -->
+                    <rect x="100" y="50" width="120" height="200" rx="5" fill="url(#rackGradient)" stroke="#888" class="left-rack"/>
+                    <rect x="280" y="50" width="120" height="200" rx="5" fill="url(#rackGradient)" stroke="#888"/>
+                    
+                    <!-- Server Units -->
+                    <rect x="110" y="70" width="100" height="20" rx="2" fill="url(#serverUnitGradient)" class="left-rack"/>
+                    <rect x="110" y="100" width="100" height="20" rx="2" fill="url(#serverUnitGradient)" class="left-rack"/>
+                    <rect x="110" y="130" width="100" height="20" rx="2" fill="url(#serverUnitGradient)" class="left-rack"/>
+                    <rect x="110" y="160" width="100" height="20" rx="2" fill="url(#serverUnitGradient)" class="left-rack"/>
+                    <rect x="110" y="190" width="100" height="20" rx="2" fill="url(#serverUnitGradient)" class="left-rack"/>
+                    <rect x="110" y="220" width="100" height="20" rx="2" fill="url(#serverUnitGradient)" class="left-rack"/>
+                    
+                    <rect x="290" y="70" width="100" height="20" rx="2" fill="url(#serverUnitGradient)"/>
+                    <rect x="290" y="100" width="100" height="20" rx="2" fill="url(#serverUnitGradient)"/>
+                    <rect x="290" y="130" width="100" height="20" rx="2" fill="url(#serverUnitGradient)"/>
+                    <rect x="290" y="160" width="100" height="20" rx="2" fill="url(#serverUnitGradient)"/>
+                    <rect x="290" y="190" width="100" height="20" rx="2" fill="url(#serverUnitGradient)"/>
+                    <rect x="290" y="220" width="100" height="20" rx="2" fill="url(#serverUnitGradient)"/>
+                    
+                    <!-- Data Transfer Effect -->
+                    <g class="data-transfer">
+                        <circle cx="215" cy="150" r="2" fill="#0066CC" class="data-bit bit1" opacity="0"/>
+                        <circle cx="225" cy="150" r="2" fill="#0066CC" class="data-bit bit2" opacity="0"/>
+                        <circle cx="235" cy="150" r="2" fill="#0066CC" class="data-bit bit3" opacity="0"/>
+                        <circle cx="245" cy="150" r="2" fill="#0066CC" class="data-bit bit4" opacity="0"/>
+                    </g>
+
+                    <!-- Virtual Machine Icons - Left Rack (will fly to right) -->
+                    <rect x="115" y="105" width="40" height="10" rx="1" fill="url(#vmGradientRight)" class="vm-left-1"/>
+                    <text x="135" y="113" font-family="Inter" font-size="7" font-weight="bold" fill="white" text-anchor="middle" class="vm-indicator-left-1">&lt;v2v&gt;</text>
+                    
+                    <rect x="165" y="105" width="40" height="10" rx="1" fill="url(#vmGradientRight)" class="vm-left-2"/>
+                    <text x="185" y="113" font-family="Inter" font-size="7" font-weight="bold" fill="white" text-anchor="middle" class="vm-indicator-left-2">&lt;v2v&gt;</text>
+                    
+                    <rect x="115" y="165" width="40" height="10" rx="1" fill="url(#vmGradientRight)" class="vm-left-3"/>
+                    <text x="135" y="173" font-family="Inter" font-size="7" font-weight="bold" fill="white" text-anchor="middle" class="vm-indicator-left-3">&lt;v2v&gt;</text>
+                    
+                    <rect x="165" y="165" width="40" height="10" rx="1" fill="url(#vmGradientRight)" class="vm-left-4"/>
+                    <text x="185" y="173" font-family="Inter" font-size="7" font-weight="bold" fill="white" text-anchor="middle" class="vm-indicator-left-4">&lt;v2v&gt;</text>
+                    
+                    <rect x="115" y="225" width="40" height="10" rx="1" fill="url(#vmGradientRight)" class="vm-left-5"/>
+                    <text x="135" y="233" font-family="Inter" font-size="7" font-weight="bold" fill="white" text-anchor="middle" class="vm-indicator-left-5">&lt;v2v&gt;</text>
+                    
+                    <rect x="165" y="225" width="40" height="10" rx="1" fill="url(#vmGradientRight)" class="vm-left-6"/>
+                    <text x="185" y="233" font-family="Inter" font-size="7" font-weight="bold" fill="white" text-anchor="middle" class="vm-indicator-left-6">&lt;v2v&gt;</text>
+                    
+                    <!-- Virtual Machine Icons - Right Rack (target) -->
+                    <rect x="295" y="75" width="40" height="10" rx="1" fill="url(#vmGradientRight)" class="vm-right-1"/>
+                    <text x="315" y="83" font-family="Inter" font-size="7" font-weight="bold" fill="white" text-anchor="middle" class="vm-indicator">&lt;v2v&gt;</text>
+                    
+                    <rect x="345" y="75" width="40" height="10" rx="1" fill="url(#vmGradientRight)" class="vm-right-2"/>
+                    <text x="365" y="83" font-family="Inter" font-size="7" font-weight="bold" fill="white" text-anchor="middle" class="vm-indicator">&lt;v2v&gt;</text>
+                    
+                    <rect x="295" y="135" width="40" height="10" rx="1" fill="url(#vmGradientRight)" class="vm-right-3"/>
+                    <text x="315" y="143" font-family="Inter" font-size="7" font-weight="bold" fill="white" text-anchor="middle" class="vm-indicator">&lt;v2v&gt;</text>
+                    
+                    <rect x="345" y="135" width="40" height="10" rx="1" fill="url(#vmGradientRight)" class="vm-right-4"/>
+                    <text x="365" y="143" font-family="Inter" font-size="7" font-weight="bold" fill="white" text-anchor="middle" class="vm-indicator">&lt;v2v&gt;</text>
+                    
+                    <rect x="295" y="195" width="40" height="10" rx="1" fill="url(#vmGradientRight)" class="vm-right-5"/>
+                    <text x="315" y="203" font-family="Inter" font-size="7" font-weight="bold" fill="white" text-anchor="middle" class="vm-indicator">&lt;v2v&gt;</text>
+                    
+                    <rect x="345" y="195" width="40" height="10" rx="1" fill="url(#vmGradientRight)" class="vm-right-6"/>
+                    <text x="365" y="203" font-family="Inter" font-size="7" font-weight="bold" fill="white" text-anchor="middle" class="vm-indicator">&lt;v2v&gt;</text>
+                    
+                    <!-- Gradient definitions -->
+                    <defs>
+                        <linearGradient id="vmGradientLeft" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#0044AA;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#0088FF;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="vmGradientRight" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#5DA9FF;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="rackGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#BFC9E3;stop-opacity:1" />
+                            <stop offset="20%" style="stop-color:#8A9AC8;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#6A7A98;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="rackFinalGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#CFD9F3;stop-opacity:1" />
+                            <stop offset="20%" style="stop-color:#9AAAD8;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#7A8AA8;stop-opacity:1" />
+                        </linearGradient>
+                        <linearGradient id="serverUnitGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#EEEEEE;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#CCCCCC;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    
+                    <style>
+                        @keyframes flyToRight1 {
+                            0% { transform: translateX(0); }
+                            100% { transform: translateX(180px); }
+                        }
+                        @keyframes flyToRight2 {
+                            0% { transform: translateX(0); }
+                            100% { transform: translateX(180px); }
+                        }
+                        @keyframes flyToRight3 {
+                            0% { transform: translateX(0); }
+                            100% { transform: translateX(180px); }
+                        }
+                        @keyframes flyToRight4 {
+                            0% { transform: translateX(0); }
+                            100% { transform: translateX(180px); }
+                        }
+                        @keyframes flyToRight5 {
+                            0% { transform: translateX(0); }
+                            100% { transform: translateX(180px); }
+                        }
+                        @keyframes flyToRight6 {
+                            0% { transform: translateX(0); }
+                            100% { transform: translateX(180px); }
+                        }
+                        @keyframes fadeOut {
+                            0% { opacity: 1; }
+                            100% { opacity: 0; }
+                        }
+                        @keyframes moveToCenter {
+                            0% { transform: translateX(0); }
+                            100% { transform: translateX(-90px); }
+                        }
+                        @keyframes shineEffect {
+                            0% { filter: brightness(1) drop-shadow(0 0 0px rgba(0, 102, 204, 0)); fill: url(#rackGradient); }
+                            40% { filter: brightness(1.5) drop-shadow(0 0 15px rgba(78, 145, 255, 0.6)); }
+                            60% { filter: brightness(1.4) drop-shadow(0 0 12px rgba(78, 145, 255, 0.5)); fill: url(#rackFinalGradient); }
+                            100% { filter: brightness(1.15) drop-shadow(0 0 8px rgba(0, 102, 204, 0.3)); fill: url(#rackFinalGradient); }
+                        }
+                        @keyframes pulseLight {
+                            0% { opacity: 0.3; }
+                            50% { opacity: 1; }
+                            100% { opacity: 0.3; }
+                        }
+                        
+                        .vm-left-1, .vm-indicator-left-1 {
+                            animation: flyToRight1 1.5s ease-in-out forwards;
+                            animation-delay: 1.2s;
+                        }
+                        .vm-left-2, .vm-indicator-left-2 {
+                            animation: flyToRight2 1.5s ease-in-out forwards;
+                            animation-delay: 1.2s;
+                        }
+                        .vm-left-3, .vm-indicator-left-3 {
+                            animation: flyToRight3 1.5s ease-in-out forwards;
+                            animation-delay: 1.5s;
+                        }
+                        .vm-left-4, .vm-indicator-left-4 {
+                            animation: flyToRight4 1.5s ease-in-out forwards;
+                            animation-delay: 1.5s;
+                        }
+                        .vm-left-5, .vm-indicator-left-5 {
+                            animation: flyToRight5 1.5s ease-in-out forwards;
+                            animation-delay: 1.8s;
+                        }
+                        .vm-left-6, .vm-indicator-left-6 {
+                            animation: flyToRight6 1.5s ease-in-out forwards;
+                            animation-delay: 1.8s;
+                        }
+                        .left-rack, .migration-arrow {
+                            animation: fadeOut 0.5s ease-in-out forwards;
+                            animation-delay: 3.5s;
+                        }
+
+                        @keyframes dataBitMove {
+                            0% { transform: translateX(0); opacity: 0; }
+                            20% { opacity: 0.7; }
+                            80% { opacity: 0.7; }
+                            100% { transform: translateX(30px); opacity: 0; }
+                        }
+
+                        .data-bit {
+                            opacity: 0;
+                            animation-iteration-count: 7;  /* Will run for ~3 seconds total */
+                        }
+
+                        .bit1 {
+                            animation: dataBitMove 0.4s ease-in-out;
+                            animation-delay: 0.1s;
+                            animation-iteration-count: 7;
+                        }
+
+                        .bit2 {
+                            animation: dataBitMove 0.4s ease-in-out;
+                            animation-delay: 0.15s;
+                            animation-iteration-count: 7;
+                        }
+
+                        .bit3 {
+                            animation: dataBitMove 0.4s ease-in-out;
+                            animation-delay: 0.2s;
+                            animation-iteration-count: 7;
+                        }
+
+                        .bit4 {
+                            animation: dataBitMove 0.4s ease-in-out;
+                            animation-delay: 0.25s;
+                            animation-iteration-count: 7;
+                        }
+
+                        .migration-arrow {
+                            display: none;  /* Hide the arrows */
+                        }
+
+                        .shine-animation {
+                            animation: shineEffect 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+                        }
+                    </style>
+                    
+                    <!-- Apply the moveToCenter animation to the right rack -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            // Initial setup
+                            const svg = document.querySelector('.hero-image svg');
+                            
+                            // Wait for initial animations to complete
+                            setTimeout(() => {
+                                // Create a group for the right side
+                                const rightSideGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                                rightSideGroup.setAttribute("id", "rightSideGroup");
+                                svg.appendChild(rightSideGroup);
+                                
+                                // First add the rack and units (background elements)
+                                const rightRack = document.querySelector('.hero-image svg > rect[x="280"]');
+                                const rightUnits = document.querySelectorAll('.hero-image svg > rect[x="290"]');
+                                
+                                if (rightRack) rightSideGroup.appendChild(rightRack.cloneNode(true));
+                                rightUnits.forEach(unit => rightSideGroup.appendChild(unit.cloneNode(true)));
+                                
+                                // Then add VMs and texts (foreground elements)
+                                const rightVMs = document.querySelectorAll('.hero-image svg > rect[x="295"], .hero-image svg > rect[x="345"]');
+                                const vmTexts = document.querySelectorAll('.hero-image svg > text[x="315"], .hero-image svg > text[x="365"]');
+                                
+                                rightVMs.forEach(vm => rightSideGroup.appendChild(vm.cloneNode(true)));
+                                vmTexts.forEach(text => rightSideGroup.appendChild(text.cloneNode(true)));
+                                
+                                // Hide original right side elements
+                                if (rightRack) rightRack.style.opacity = "0";
+                                rightUnits.forEach(unit => unit.style.opacity = "0");
+                                rightVMs.forEach(vm => vm.style.opacity = "0");
+                                vmTexts.forEach(text => text.style.opacity = "0");
+                                
+                                // Get the VMs that flew from left
+                                const flyingVMs = document.querySelectorAll('.vm-left-1, .vm-left-2, .vm-left-3, .vm-left-4, .vm-left-5, .vm-left-6');
+                                const flyingTexts = document.querySelectorAll('.vm-indicator-left-1, .vm-indicator-left-2, .vm-indicator-left-3, .vm-indicator-left-4, .vm-indicator-left-5, .vm-indicator-left-6');
+                                
+                                // Move flying VMs to the end of SVG to ensure they're on top
+                                flyingVMs.forEach(vm => {
+                                    const clone = vm.cloneNode(true);
+                                    svg.appendChild(clone);
+                                    vm.style.opacity = "0";
+                                });
+                                
+                                flyingTexts.forEach(text => {
+                                    const clone = text.cloneNode(true);
+                                    svg.appendChild(clone);
+                                    text.style.opacity = "0";
+                                });
+                                
+                                // Wait for left rack fade and VM animations to complete
+                                setTimeout(() => {
+                                    // Get the cloned flying VMs at the end of SVG
+                                    const movedVMs = svg.querySelectorAll('.vm-left-1, .vm-left-2, .vm-left-3, .vm-left-4, .vm-left-5, .vm-left-6');
+                                    const movedTexts = svg.querySelectorAll('.vm-indicator-left-1, .vm-indicator-left-2, .vm-indicator-left-3, .vm-indicator-left-4, .vm-indicator-left-5, .vm-indicator-left-6');
+                                    
+                                    // Stop their animations at the final position
+                                    movedVMs.forEach(vm => {
+                                        if (vm.parentElement === svg) {  // Only affect the cloned VMs
+                                            vm.style.animation = 'none';
+                                            vm.style.transform = 'translateX(180px)';
+                                        }
+                                    });
+                                    
+                                    movedTexts.forEach(text => {
+                                        if (text.parentElement === svg) {  // Only affect the cloned texts
+                                            text.style.animation = 'none';
+                                            text.style.transform = 'translateX(180px)';
+                                        }
+                                    });
+                                    
+                                    // Move everything to center
+                                    setTimeout(() => {
+                                        // Move the rack group
+                                        rightSideGroup.style.transition = "transform 1.5s cubic-bezier(0.22, 1, 0.36, 1)";
+                                        rightSideGroup.style.transform = "translateX(-90px)";
+                                        
+                                        // Move the flying VMs
+                                        movedVMs.forEach(vm => {
+                                            if (vm.parentElement === svg) {  // Only affect the cloned VMs
+                                                vm.style.transition = "transform 1.5s cubic-bezier(0.22, 1, 0.36, 1)";
+                                                vm.style.transform = "translateX(90px)";
+                                            }
+                                        });
+                                        
+                                        movedTexts.forEach(text => {
+                                            if (text.parentElement === svg) {  // Only affect the cloned texts
+                                                text.style.transition = "transform 1.5s cubic-bezier(0.22, 1, 0.36, 1)";
+                                                text.style.transform = "translateX(90px)";
+                                            }
+                                        });
+                                        
+                                        // New smooth bling effect after movement
+                                        setTimeout(() => {
+                                            const movedRack = rightSideGroup.querySelector('rect[x="280"]');
+                                            if (movedRack) {
+                                                // Apply class-based animation instead of inline styles
+                                                movedRack.classList.add('shine-animation');
+                                                
+                                                // After animation completes, add subtle pulsing effect to vm blocks
+                                                setTimeout(() => {
+                                                    // Add subtle pulsing effect to vm blocks
+                                                    const vmRects = rightSideGroup.querySelectorAll('rect[x="295"], rect[x="345"]');
+                                                    vmRects.forEach((vmRect, index) => {
+                                                        vmRect.style.transition = "filter 0.4s ease";
+                                                        vmRect.style.filter = "drop-shadow(0 0 3px rgba(0, 102, 204, 0.3))";
+                                                        
+                                                        // Stagger the effect slightly but more rapidly
+                                                        setTimeout(() => {
+                                                            vmRect.style.filter = "drop-shadow(0 0 1px rgba(0, 102, 204, 0.2))";
+                                                        }, 150 + (index * 75));
+                                                    });
+                                                }, 1200);
+                                            }
+                                        }, 1600);
+                                    }, 100);
+                                    
+                                }, 4100);
+                                
+                            }, 500);
+                        });
+                    </script>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Our Migration Services</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="15" width="15" height="30" rx="2" fill="#EEE" stroke="#0066CC" stroke-width="2"/>
+                            <rect x="35" y="15" width="15" height="30" rx="2" fill="#EEE" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M25 30H35" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M32 27L35 30L32 33" stroke="#0066CC" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Virtual to Virtual (V2V)</h3>
+                    <p>Convert virtual machines between different hypervisor formats including VMware, Hyper-V, XenServer, and KVM. Bi-directional conversion between VMDK, VHD/VHDX, QCOW2, and RAW formats.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="20" width="15" height="25" rx="1" fill="#EEE" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M12 25H23" stroke="#0066CC" stroke-opacity="0.5" stroke-width="1.5"/>
+                            <path d="M12 30H23" stroke="#0066CC" stroke-opacity="0.5" stroke-width="1.5"/>
+                            <path d="M12 35H23" stroke="#0066CC" stroke-opacity="0.5" stroke-width="1.5"/>
+                            <rect x="35" y="15" width="15" height="30" rx="2" fill="#EEE" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M25 30H35" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M32 27L35 30L32 33" stroke="#0066CC" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Physical to Virtual (P2V)</h3>
+                    <p>Convert physical servers to virtual machines with complete data consistency. Migrate physical infrastructure to VMware ESXi, Microsoft Hyper-V, or other hypervisors with zero downtime.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="15" width="15" height="30" rx="2" fill="#EEE" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M35 15C35 15 45 20 45 30C45 40 35 45 35 45" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M35 25C35 25 40 28 40 30C40 32 35 35 35 35" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M25 30H35" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M32 27L35 30L32 33" stroke="#0066CC" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Virtual to Cloud (V2C)</h3>
+                    <p>Migrate virtual machines directly to AWS, Azure, or Google Cloud. Convert on-premise VMs to cloud instances without intermediary steps, maintaining consistency and performance.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 15C10 15 20 20 20 30C20 40 10 45 10 45" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M10 25C10 25 15 28 15 30C15 32 10 35 10 35" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M50 15C50 15 40 20 40 30C40 40 50 45 50 45" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M50 25C50 25 45 28 45 30C45 32 50 35 50 35" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M20 30H40" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M37 27L40 30L37 33" stroke="#0066CC" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Cloud to Cloud (C2C)</h3>
+                    <p>Seamlessly migrate between AWS, Azure, and Google Cloud platforms. Transfer cloud instances directly without downloading data, preserving all VM configurations and settings.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="10" y="20" width="15" height="25" rx="1" fill="#EEE" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M12 25H23" stroke="#0066CC" stroke-opacity="0.5" stroke-width="1.5"/>
+                            <path d="M12 30H23" stroke="#0066CC" stroke-opacity="0.5" stroke-width="1.5"/>
+                            <path d="M12 35H23" stroke="#0066CC" stroke-opacity="0.5" stroke-width="1.5"/>
+                            <path d="M35 15C35 15 45 20 45 30C45 40 35 45 35 45" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M35 25C35 25 40 28 40 30C40 32 35 35 35 35" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M25 30H35" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M32 27L35 30L32 33" stroke="#0066CC" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Physical to Cloud (P2C)</h3>
+                    <p>Directly convert physical servers to cloud instances on AWS, Azure, or Google Cloud. Eliminate intermediary steps with our direct migration technology that preserves data consistency.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 20L25 15L35 20L45 15V40L35 45L25 40L15 45V20Z" fill="#EEE" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M25 15V40" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M35 20V45" stroke="#0066CC" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Hypervisor Switch</h3>
+                    <p>Facilitate seamless transitions between hypervisor platforms. Move workloads between VMware, Hyper-V, Xen, KVM, and other virtualization environments with full compatibility.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About v2v.tech</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>v2v.tech is a specialized IT consulting firm focusing on virtualization migration services. With years of experience in enterprise environments, our team provides expert migration solutions that minimize downtime and ensure data consistency.</p>
+                    <p>We understand that migration projects can be complex and risky. That's why we've developed proven methodologies and tools to make your transition between virtualization platforms, physical infrastructure, and cloud environments as smooth as possible.</p>
+                    <p>Our in-house development team creates fully custom solutions and tools tailored to your specific migration needs. Whether it's automating complex workflows, building specialized conversion tools, or developing custom migration scripts, we ensure each solution perfectly fits your unique infrastructure requirements.</p>
+                </div>
+                <div class="about-image">
+                    <svg width="100%" height="auto" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background Elements -->
+                        <circle cx="200" cy="200" r="195" fill="#F5F9FF" />
+                        <circle cx="200" cy="200" r="170" fill="#E6F0FA" />
+                        
+                        <!-- Migration Flow Lines - Diagonal and dotted -->
+                        <line x1="110" y1="120" x2="180" y2="180" stroke="#0066CC" stroke-width="2" stroke-dasharray="6 4" />
+                        <line x1="290" y1="120" x2="220" y2="180" stroke="#0066CC" stroke-width="2" stroke-dasharray="6 4" />
+                        <line x1="110" y1="280" x2="180" y2="220" stroke="#0066CC" stroke-width="2" stroke-dasharray="6 4" />
+                        <line x1="290" y1="280" x2="220" y2="220" stroke="#0066CC" stroke-width="2" stroke-dasharray="6 4" />
+                        
+                        <!-- Virtual Machines - Left side -->
+                        <g transform="translate(60, 80) scale(0.85)">
+                            <rect x="0" y="0" width="60" height="80" rx="4" fill="white" stroke="#CCC" stroke-width="1.5" />
+                            <rect x="10" y="10" width="40" height="6" rx="1" fill="#0066CC" opacity="0.7" />
+                            <rect x="10" y="24" width="40" height="6" rx="1" fill="#0066CC" opacity="0.7" />
+                            <rect x="10" y="38" width="40" height="6" rx="1" fill="#0066CC" opacity="0.7" />
+                            <rect x="10" y="52" width="25" height="6" rx="1" fill="#0066CC" opacity="0.7" />
+                        </g>
+                        
+                        <g transform="translate(60, 260) scale(0.85)">
+                            <rect x="0" y="0" width="60" height="80" rx="4" fill="white" stroke="#CCC" stroke-width="1.5" />
+                            <rect x="10" y="10" width="40" height="6" rx="1" fill="#0066CC" opacity="0.7" />
+                            <rect x="10" y="24" width="40" height="6" rx="1" fill="#0066CC" opacity="0.7" />
+                            <rect x="10" y="38" width="40" height="6" rx="1" fill="#0066CC" opacity="0.7" />
+                            <rect x="10" y="52" width="25" height="6" rx="1" fill="#0066CC" opacity="0.7" />
+                        </g>
+                        
+                        <!-- Cloud Environment - Right side -->
+                        <g transform="translate(330, 60) scale(0.9)">
+                            <path d="M-60 40C-60 34 -57 29 -53 25C-49 21 -44 19 -39 19C-34 19 -30 21 -26 24C-25 20 -21 17 -17 16C-13 15 -9 15 -5 16C-1 17 1 20 4 24C6 28 7 32 7 35C11 36 15 39 17 43C19 47 21 52 21 57C21 62 19 66 15 70C11 74 6 77 0 77H-48C-54 77 -59 74 -63 70C-67 66 -70 62 -70 57C-70 52 -67 47 -63 43C-59 39 -54 36 -48 36" fill="white" />
+                            <path d="M-60 40C-60 34 -57 29 -53 25C-49 21 -44 19 -39 19C-34 19 -30 21 -26 24C-25 20 -21 17 -17 16C-13 15 -9 15 -5 16C-1 17 1 20 4 24C6 28 7 32 7 35C11 36 15 39 17 43C19 47 21 52 21 57C21 62 19 66 15 70C11 74 6 77 0 77H-48C-54 77 -59 74 -63 70C-67 66 -70 62 -70 57C-70 52 -67 47 -63 43C-59 39 -54 36 -48 36" stroke="#0066CC" stroke-width="1.5" fill="none" />
+                            <rect x="5" y="30" width="15" height="15" rx="2" fill="white" stroke="#0066CC" stroke-width="1" />
+                            <rect x="-25" y="25" width="15" height="15" rx="2" fill="white" stroke="#0066CC" stroke-width="1" />
+                            <rect x="-12" y="55" width="15" height="15" rx="2" fill="white" stroke="#0066CC" stroke-width="1" />
+                        </g>
+                        
+                        <!-- Physical Server - Right side -->
+                        <g transform="translate(320, 260) scale(0.7)">
+                            <rect x="-40" y="0" width="70" height="90" rx="2" fill="#F0F0F0" stroke="#CCC" stroke-width="1.5" />
+                            <rect x="-35" y="10" width="60" height="10" rx="1" fill="white" stroke="#CCC" stroke-width="1" />
+                            <rect x="-35" y="30" width="60" height="10" rx="1" fill="white" stroke="#CCC" stroke-width="1" />
+                            <rect x="-35" y="50" width="60" height="10" rx="1" fill="white" stroke="#CCC" stroke-width="1" />
+                            <rect x="-35" y="70" width="60" height="10" rx="1" fill="white" stroke="#CCC" stroke-width="1" />
+                            
+                            <circle cx="-28" cy="15" r="2" fill="#0066CC" />
+                            <circle cx="-28" cy="35" r="2" fill="#0066CC" />
+                            <circle cx="-28" cy="55" r="2" fill="#0066CC" />
+                            <circle cx="-28" cy="75" r="2" fill="#0066CC" />
+                        </g>
+                        
+                        <!-- Central Element -->
+                        <g transform="translate(180, 180) scale(0.9)">
+                            <circle cx="20" cy="20" r="40" fill="white" stroke="#0066CC" stroke-width="2" />
+                            <path d="M10 5L0 20L10 35" stroke="#0066CC" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M30 5L40 20L30 35" stroke="#0066CC" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M15 0L25 40" stroke="#0066CC" stroke-width="2" stroke-linecap="round"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits" class="benefits">
+        <div class="container">
+            <h2>Benefits of Our Migration Services</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="icon">
+                        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M25 10V40" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M40 25H10" stroke="#0066CC" stroke-width="2"/>
+                            <circle cx="25" cy="25" r="15" stroke="#0066CC" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <h3>Zero Data Loss</h3>
+                    <p>Our migration technology works with copies of your data, keeping originals intact until the process is complete and verified, ensuring complete data safety.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="icon">
+                        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 25L23 33L38 18" stroke="#0066CC" stroke-width="2"/>
+                            <circle cx="25" cy="25" r="15" stroke="#0066CC" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <h3>Minimize Downtime</h3>
+                    <p>Advanced snapshot technology allows us to perform most migration work while systems remain online, reducing or eliminating service interruptions.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="icon">
+                        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="15" y="15" width="20" height="20" rx="2" stroke="#0066CC" stroke-width="2" fill="none"/>
+                            <path d="M15 35L10 40" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M35 35L40 40" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M15 15L10 10" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M35 15L40 10" stroke="#0066CC" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <h3>Format Flexibility</h3>
+                    <p>Support for all major virtualization formats including VMDK, VHD/VHDX, QCOW2, and RAW, allowing seamless movement between platforms.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="icon">
+                        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M25 10V15" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M25 35V40" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M40 25H35" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M15 25H10" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M35 15L31 19" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M19 31L15 35" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M35 35L31 31" stroke="#0066CC" stroke-width="2"/>
+                            <path d="M19 19L15 15" stroke="#0066CC" stroke-width="2"/>
+                            <circle cx="25" cy="25" r="10" stroke="#0066CC" stroke-width="2" fill="none"/>
+                        </svg>
+                    </div>
+                    <h3>Expert Support</h3>
+                    <p>Our team of migration specialists provides full planning, execution, and verification services to ensure your migration project's success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-form">
+                    <form id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <div class="form-button-wrapper">
+                            <button type="submit" class="btn">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 5H21V19H3V5Z" stroke="#0066CC" stroke-width="2" fill="none"/>
+                            <path d="M3 5L12 14L21 5" stroke="#0066CC" stroke-width="2"/>
+                        </svg>
+                        <p>info@v2v.tech</p>
+                    </div>
+                    <div class="info-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 4H9L11 9L8 10.5C9.5 13.5 12.5 16.5 15.5 18L17 15L22 17V21C22 21.5523 21.5523 22 21 22C11.5 22 4 14.5 4 5C4 4.44772 4.44772 4 5 4Z" stroke="#0066CC" stroke-width="2" fill="none"/>
+                        </svg>
+                        <p>+1 (888) 555-V2V2</p>
+                    </div>
+                    <div class="info-item">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM12 11.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke="#0066CC" stroke-width="2" fill="none"/>
+                        </svg>
+                        <p>535 Mission Street, 14th Floor<br>San Francisco, CA 94105</p>
+                    </div>
+                    <div class="map-container">
+                        <div id="contact-map"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <svg width="180" height="35" viewBox="0 0 180 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Left angle bracket -->
+                        <path d="M15 8L7 15L15 22" stroke="#0066CC" stroke-width="2" stroke-linecap="round"/>
+                        <!-- Right angle bracket -->
+                        <path d="M165 8L173 15L165 22" stroke="#0066CC" stroke-width="2" stroke-linecap="round"/>
+                        <!-- V2V.TECH text -->
+                        <text x="30" y="21" font-family="Inter" font-weight="700" font-size="18" fill="white">V2V.TECH</text>
+                    </svg>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#services">V2V Migration</a></li>
+                            <li><a href="#services">P2V Migration</a></li>
+                            <li><a href="#services">Cloud Migration</a></li>
+                            <li><a href="#services">Hypervisor Switch</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <ul>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 v2v.tech - All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html> 
