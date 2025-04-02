@@ -967,4 +967,198 @@ footer::before {
     #contact-map {
         height: 250px;
     }
+}
+
+/* Data Protection Section */
+.data-protection {
+    padding: 5rem 0;
+    background-color: var(--bg);
+    position: relative;
+}
+
+.data-protection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(135deg, rgba(0, 102, 204, 0.03) 0%, transparent 100%);
+    z-index: 0;
+}
+
+.section-intro {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--light-text);
+}
+
+.protection-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.protection-card {
+    padding: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.protection-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.protection-card .icon {
+    margin-bottom: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.protection-card:hover .icon {
+    transform: scale(1.05);
+}
+
+.protection-card h3 {
+    margin-bottom: 1rem;
+    color: var(--secondary);
+}
+
+.protection-card p {
+    color: var(--light-text);
+    margin-bottom: 1.5rem;
+}
+
+.feature-list {
+    list-style: none;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--primary-light);
+}
+
+.feature-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--secondary);
+}
+
+.feature-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.5rem;
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary);
+    border-radius: 50%;
+}
+
+.protection-info {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.protection-stats {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: var(--primary);
+    color: white;
+}
+
+.protection-stats .stat {
+    text-align: center;
+}
+
+.protection-stats .value {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.protection-stats .label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.protection-cta {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.protection-cta h3 {
+    margin-bottom: 1rem;
+    color: var(--secondary);
+}
+
+.protection-cta p {
+    margin-bottom: 1.5rem;
+    color: var(--light-text);
+}
+
+/* Media queries for Data Protection section */
+@media (max-width: 768px) {
+    .protection-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .protection-stats {
+        flex-direction: row;
+        padding: 1.5rem;
+    }
+    
+    .protection-cta {
+        text-align: center;
+    }
+    
+    .feature-list {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .protection-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .protection-card {
+        text-align: center;
+    }
+    
+    .protection-card .icon {
+        margin: 0 auto 1.5rem;
+    }
+    
+    .feature-list li {
+        padding-left: 0;
+        text-align: center;
+    }
+    
+    .feature-list li::before {
+        display: none;
+    }
 } 
