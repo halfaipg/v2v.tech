@@ -1152,10 +1152,22 @@ footer::before {
     
     .protection-cta {
         text-align: center;
+        padding: 1.5rem;
     }
     
     .feature-list {
         padding-left: 0;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 80%;
+    }
+    
+    .protection-card {
+        align-items: center;
+    }
+    
+    .protection-card p {
+        text-align: center;
     }
 }
 
@@ -1167,18 +1179,41 @@ footer::before {
     
     .protection-card {
         text-align: center;
+        align-items: center;
     }
     
     .protection-card .icon {
         margin: 0 auto 1.5rem;
     }
     
+    .protection-card p {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .feature-list {
+        width: 100%;
+        max-width: 90%;
+        margin: 1rem auto 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
     .feature-list li {
         padding-left: 0;
         text-align: center;
+        width: 100%;
+        display: flex;
+        justify-content: center;
     }
     
     .feature-list li::before {
         display: none;
+    }
+    
+    .data-protection .section-intro {
+        padding: 0 1rem;
     }
 } 
