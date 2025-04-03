@@ -46,25 +46,31 @@ document.addEventListener('DOMContentLoaded', () => {
         appearOnScroll.observe(card);
     });
     
-    // Typewriter effect for hero heading
-    const heroHeading = document.querySelector('.hero-content h1');
-    if (heroHeading) {
-        const text = heroHeading.textContent;
-        heroHeading.innerHTML = '';
-        let i = 0;
-        const speed = 50; // Speed in milliseconds
+    // Typewriter effect for hero title
+    function startTypewriter() {
+        const heroTitle = document.getElementById('hero-title');
+        if (!heroTitle) return;
         
-        function typeWriter() {
+        const text = heroTitle.textContent;
+        heroTitle.textContent = '';
+        heroTitle.style.visibility = 'visible';
+        
+        let i = 0;
+        const typeSpeed = 50; // adjust speed as needed
+        
+        function type() {
             if (i < text.length) {
-                heroHeading.innerHTML += text.charAt(i);
+                heroTitle.textContent += text.charAt(i);
                 i++;
-                setTimeout(typeWriter, speed);
+                setTimeout(type, typeSpeed);
             }
         }
         
-        // Start the typewriter effect after a short delay
-        setTimeout(typeWriter, 500);
+        type();
     }
+    
+    // Start typewriter effect
+    startTypewriter();
     
     // Interactive hover effects for SVG graphics
     const svgElements = document.querySelectorAll('.icon svg path, .icon svg rect, .icon svg circle');
