@@ -154,54 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Create and add statistics section
     const createStatsSection = () => {
-        const aboutSection = document.querySelector('.about');
-        if (!aboutSection) return;
-        
-        const statsSection = document.createElement('div');
-        statsSection.className = 'stats-container';
-        
-        const stats = [
-            { value: 334, label: 'Successful Migrations' },
-            { value: 9, label: 'Enterprise Clients' },
-            { value: 20, label: 'Years of Experience' },
-            { value: 100, label: 'Client Satisfaction %' }
-        ];
-        
-        stats.forEach(stat => {
-            const statItem = document.createElement('div');
-            statItem.className = 'stat-item';
-            
-            const statValue = document.createElement('div');
-            statValue.className = 'stat-value';
-            statValue.textContent = '0';
-            statValue.dataset.target = stat.value;
-            
-            const statLabel = document.createElement('div');
-            statLabel.className = 'stat-label';
-            statLabel.textContent = stat.label;
-            
-            statItem.appendChild(statValue);
-            statItem.appendChild(statLabel);
-            statsSection.appendChild(statItem);
-        });
-        
-        aboutSection.querySelector('.about-content').appendChild(statsSection);
-        
-        // Set up intersection observer for the stats section
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const statValues = entry.target.querySelectorAll('.stat-value');
-                    statValues.forEach(value => {
-                        const target = parseInt(value.dataset.target);
-                        animateCounter(value, target, 2000);
-                    });
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        statsObserver.observe(statsSection);
+        // Remove stats section - don't create it anymore
+        return;
     };
     
     // Add the statistics section
