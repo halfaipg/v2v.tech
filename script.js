@@ -46,31 +46,12 @@ document.addEventListener('DOMContentLoaded', () => {
         appearOnScroll.observe(card);
     });
     
-    // Typewriter effect for hero title
-    function startTypewriter() {
-        const heroTitle = document.getElementById('hero-title');
-        if (!heroTitle) return;
-        
-        const text = heroTitle.textContent;
-        heroTitle.textContent = '';
-        heroTitle.style.visibility = 'visible';
-        
-        let i = 0;
-        const typeSpeed = 50; // adjust speed as needed
-        
-        function type() {
-            if (i < text.length) {
-                heroTitle.textContent += text.charAt(i);
-                i++;
-                setTimeout(type, typeSpeed);
-            }
-        }
-        
-        type();
+    // Typewriter effect for hero heading
+    const heroHeading = document.querySelector('.hero-content h1');
+    if (heroHeading) {
+        // Remove typewriter effect - using CSS fade-in animation instead
+        heroHeading.style.opacity = 1;
     }
-    
-    // Start typewriter effect
-    startTypewriter();
     
     // Interactive hover effects for SVG graphics
     const svgElements = document.querySelectorAll('.icon svg path, .icon svg rect, .icon svg circle');
