@@ -212,12 +212,32 @@ nav ul li a:hover {
 .hero-content h1 {
     margin-bottom: 1rem;
     min-height: 7.5rem;
+    animation: fadeIn 1.5s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .hero-content p {
     font-size: 1.1rem;
     margin-bottom: 2rem;
     color: var(--light-text);
+    animation: fadeIn 1.5s ease 0.5s forwards;
+    opacity: 0;
+}
+
+.hero-content .btn {
+    animation: fadeIn 1.5s ease 1s forwards;
+    opacity: 0;
 }
 
 .hero-image svg {
