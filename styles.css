@@ -240,9 +240,17 @@ nav ul li a:hover {
     }
 }
 
-.hero-image svg {
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image img {
+    max-width: 75%;
+    height: auto;
+    display: block;
     filter: drop-shadow(0 10px 20px rgba(0, 102, 204, 0.2));
-    /* Animation removed to prevent undulation */
 }
 
 /* No longer used for hero SVG */
