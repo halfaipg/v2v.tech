@@ -141,33 +141,37 @@
                     <style>
                         @keyframes flyToRight1 {
                             0% { transform: translateX(0); }
-                            100% { transform: translateX(180px); }
+                            100% { transform: translateX(90px); }
                         }
                         @keyframes flyToRight2 {
                             0% { transform: translateX(0); }
-                            100% { transform: translateX(180px); }
+                            100% { transform: translateX(90px); }
                         }
                         @keyframes flyToRight3 {
                             0% { transform: translateX(0); }
-                            100% { transform: translateX(180px); }
+                            100% { transform: translateX(90px); }
                         }
                         @keyframes flyToRight4 {
                             0% { transform: translateX(0); }
-                            100% { transform: translateX(180px); }
+                            100% { transform: translateX(90px); }
                         }
                         @keyframes flyToRight5 {
                             0% { transform: translateX(0); }
-                            100% { transform: translateX(180px); }
+                            100% { transform: translateX(90px); }
                         }
                         @keyframes flyToRight6 {
                             0% { transform: translateX(0); }
-                            100% { transform: translateX(180px); }
+                            100% { transform: translateX(90px); }
                         }
                         @keyframes fadeOut {
                             0% { opacity: 1; }
                             100% { opacity: 0; }
                         }
                         @keyframes moveToCenter {
+                            0% { transform: translateX(0); }
+                            100% { transform: translateX(-90px); }
+                        }
+                        @keyframes moveRightServerLeft {
                             0% { transform: translateX(0); }
                             100% { transform: translateX(-90px); }
                         }
@@ -210,6 +214,10 @@
                         .left-rack, .migration-arrow {
                             animation: fadeOut 0.5s ease-in-out forwards;
                             animation-delay: 3.5s;
+                        }
+                        .right-rack-move {
+                            animation: moveRightServerLeft 2s ease-in-out forwards;
+                            animation-delay: 1.0s;
                         }
 
                         @keyframes dataBitMove {
@@ -255,6 +263,10 @@
                         .shine-animation {
                             animation: shineEffect 1.2s cubic-bezier(0.19, 1, 0.22, 1) forwards;
                         }
+
+                        .converged-server {
+                            filter: drop-shadow(0 0 8px rgba(0, 102, 204, 0.3));
+                        }
                     </style>
                     
                     <!-- Apply the moveToCenter animation to the right rack -->
@@ -263,118 +275,141 @@
                             // Initial setup
                             const svg = document.querySelector('.hero-image svg');
                             
-                            // Wait for initial animations to complete
+                            // Add classes to right rack elements for animation
+                            const rightRack = document.querySelector('.hero-image svg > rect[x="280"]');
+                            const rightUnits = document.querySelectorAll('.hero-image svg > rect[x="290"]');
+                            const rightVMs = document.querySelectorAll('.hero-image svg > rect[x="295"], .hero-image svg > rect[x="345"]');
+                            const vmTexts = document.querySelectorAll('.hero-image svg > text[x="315"], .hero-image svg > text[x="365"]');
+                            
+                            // Add animation classes to right server elements
+                            if (rightRack) rightRack.classList.add('right-rack-move');
+                            rightUnits.forEach(unit => unit.classList.add('right-rack-move'));
+                            rightVMs.forEach(vm => vm.classList.add('right-rack-move'));
+                            vmTexts.forEach(text => text.classList.add('right-rack-move'));
+                            
+                            // Create merged server group for the convergence
+                            const centerX = 200; // Center position where servers will meet
+                            
+                            // Wait for animations to complete
                             setTimeout(() => {
-                                // Create a group for the right side
-                                const rightSideGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
-                                rightSideGroup.setAttribute("id", "rightSideGroup");
-                                svg.appendChild(rightSideGroup);
+                                // Create a group for the converged result
+                                const convergedGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                                convergedGroup.setAttribute("id", "convergedGroup");
+                                convergedGroup.classList.add('converged-server');
+                                svg.appendChild(convergedGroup);
                                 
-                                // First add the rack and units (background elements)
-                                const rightRack = document.querySelector('.hero-image svg > rect[x="280"]');
-                                const rightUnits = document.querySelectorAll('.hero-image svg > rect[x="290"]');
+                                // Create converged server in the center
+                                const convergedRack = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                                convergedRack.setAttribute('x', centerX - 60);
+                                convergedRack.setAttribute('y', '50');
+                                convergedRack.setAttribute('width', '120');
+                                convergedRack.setAttribute('height', '200');
+                                convergedRack.setAttribute('rx', '5');
+                                convergedRack.setAttribute('fill', 'url(#rackFinalGradient)');
+                                convergedRack.setAttribute('stroke', '#888');
+                                convergedRack.style.opacity = "0";
+                                convergedGroup.appendChild(convergedRack);
                                 
-                                if (rightRack) rightSideGroup.appendChild(rightRack.cloneNode(true));
-                                rightUnits.forEach(unit => rightSideGroup.appendChild(unit.cloneNode(true)));
+                                // Create server units for converged server
+                                for (let i = 0; i < 6; i++) {
+                                    const unit = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                                    unit.setAttribute('x', centerX - 50);
+                                    unit.setAttribute('y', 70 + (i * 30));
+                                    unit.setAttribute('width', '100');
+                                    unit.setAttribute('height', '20');
+                                    unit.setAttribute('rx', '2');
+                                    unit.setAttribute('fill', 'url(#serverUnitGradient)');
+                                    unit.style.opacity = "0";
+                                    convergedGroup.appendChild(unit);
+                                }
                                 
-                                // Then add VMs and texts (foreground elements)
-                                const rightVMs = document.querySelectorAll('.hero-image svg > rect[x="295"], .hero-image svg > rect[x="345"]');
-                                const vmTexts = document.querySelectorAll('.hero-image svg > text[x="315"], .hero-image svg > text[x="365"]');
+                                // Create VM rectangles for converged server
+                                const vmPositions = [
+                                    {x: centerX - 45, y: 75}, {x: centerX + 5, y: 75},
+                                    {x: centerX - 45, y: 135}, {x: centerX + 5, y: 135},
+                                    {x: centerX - 45, y: 195}, {x: centerX + 5, y: 195}
+                                ];
                                 
-                                rightVMs.forEach(vm => rightSideGroup.appendChild(vm.cloneNode(true)));
-                                vmTexts.forEach(text => rightSideGroup.appendChild(text.cloneNode(true)));
-                                
-                                // Hide original right side elements
-                                if (rightRack) rightRack.style.opacity = "0";
-                                rightUnits.forEach(unit => unit.style.opacity = "0");
-                                rightVMs.forEach(vm => vm.style.opacity = "0");
-                                vmTexts.forEach(text => text.style.opacity = "0");
-                                
-                                // Get the VMs that flew from left
-                                const flyingVMs = document.querySelectorAll('.vm-left-1, .vm-left-2, .vm-left-3, .vm-left-4, .vm-left-5, .vm-left-6');
-                                const flyingTexts = document.querySelectorAll('.vm-indicator-left-1, .vm-indicator-left-2, .vm-indicator-left-3, .vm-indicator-left-4, .vm-indicator-left-5, .vm-indicator-left-6');
-                                
-                                // Move flying VMs to the end of SVG to ensure they're on top
-                                flyingVMs.forEach(vm => {
-                                    const clone = vm.cloneNode(true);
-                                    svg.appendChild(clone);
+                                vmPositions.forEach((pos, i) => {
+                                    const vm = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                                    vm.setAttribute('x', pos.x);
+                                    vm.setAttribute('y', pos.y);
+                                    vm.setAttribute('width', '40');
+                                    vm.setAttribute('height', '10');
+                                    vm.setAttribute('rx', '1');
+                                    vm.setAttribute('fill', 'url(#vmGradientRight)');
                                     vm.style.opacity = "0";
-                                });
-                                
-                                flyingTexts.forEach(text => {
-                                    const clone = text.cloneNode(true);
-                                    svg.appendChild(clone);
+                                    convergedGroup.appendChild(vm);
+                                    
+                                    const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                                    text.setAttribute('x', pos.x + 20);
+                                    text.setAttribute('y', pos.y + 8);
+                                    text.setAttribute('font-family', 'Inter');
+                                    text.setAttribute('font-size', '7');
+                                    text.setAttribute('font-weight', 'bold');
+                                    text.setAttribute('fill', 'white');
+                                    text.setAttribute('text-anchor', 'middle');
+                                    text.textContent = "<v2v>";
                                     text.style.opacity = "0";
+                                    convergedGroup.appendChild(text);
                                 });
                                 
-                                // Wait for left rack fade and VM animations to complete
+                                // Add fade-in for converged server after animations finish
                                 setTimeout(() => {
-                                    // Get the cloned flying VMs at the end of SVG
+                                    // Fade out original elements
+                                    if (rightRack) rightRack.style.opacity = "0";
+                                    rightUnits.forEach(unit => unit.style.opacity = "0");
+                                    rightVMs.forEach(vm => vm.style.opacity = "0");
+                                    vmTexts.forEach(text => text.style.opacity = "0");
+                                    
+                                    // Hide flying VMs
                                     const movedVMs = svg.querySelectorAll('.vm-left-1, .vm-left-2, .vm-left-3, .vm-left-4, .vm-left-5, .vm-left-6');
                                     const movedTexts = svg.querySelectorAll('.vm-indicator-left-1, .vm-indicator-left-2, .vm-indicator-left-3, .vm-indicator-left-4, .vm-indicator-left-5, .vm-indicator-left-6');
                                     
-                                    // Stop their animations at the final position
                                     movedVMs.forEach(vm => {
-                                        if (vm.parentElement === svg) {  // Only affect the cloned VMs
-                                            vm.style.animation = 'none';
-                                            vm.style.transform = 'translateX(180px)';
+                                        if (vm.parentElement === svg) {
+                                            vm.style.opacity = "0";
                                         }
                                     });
                                     
                                     movedTexts.forEach(text => {
-                                        if (text.parentElement === svg) {  // Only affect the cloned texts
-                                            text.style.animation = 'none';
-                                            text.style.transform = 'translateX(180px)';
+                                        if (text.parentElement === svg) {
+                                            text.style.opacity = "0";
                                         }
                                     });
                                     
-                                    // Move everything to center
-                                    setTimeout(() => {
-                                        // Move the rack group
-                                        rightSideGroup.style.transition = "transform 1.5s cubic-bezier(0.22, 1, 0.36, 1)";
-                                        rightSideGroup.style.transform = "translateX(-90px)";
-                                        
-                                        // Move the flying VMs
-                                        movedVMs.forEach(vm => {
-                                            if (vm.parentElement === svg) {  // Only affect the cloned VMs
-                                                vm.style.transition = "transform 1.5s cubic-bezier(0.22, 1, 0.36, 1)";
-                                                vm.style.transform = "translateX(90px)";
-                                            }
-                                        });
-                                        
-                                        movedTexts.forEach(text => {
-                                            if (text.parentElement === svg) {  // Only affect the cloned texts
-                                                text.style.transition = "transform 1.5s cubic-bezier(0.22, 1, 0.36, 1)";
-                                                text.style.transform = "translateX(90px)";
-                                            }
-                                        });
-                                        
-                                        // New smooth bling effect after movement
+                                    // Fade in converged server
+                                    const convergedElements = convergedGroup.querySelectorAll('rect, text');
+                                    convergedElements.forEach((element, i) => {
                                         setTimeout(() => {
-                                            const movedRack = rightSideGroup.querySelector('rect[x="280"]');
-                                            if (movedRack) {
-                                                // Apply class-based animation instead of inline styles
-                                                movedRack.classList.add('shine-animation');
-                                                
-                                                // After animation completes, add subtle pulsing effect to vm blocks
-                                                setTimeout(() => {
-                                                    // Add subtle pulsing effect to vm blocks
-                                                    const vmRects = rightSideGroup.querySelectorAll('rect[x="295"], rect[x="345"]');
-                                                    vmRects.forEach((vmRect, index) => {
-                                                        vmRect.style.transition = "filter 0.4s ease";
-                                                        vmRect.style.filter = "drop-shadow(0 0 3px rgba(0, 102, 204, 0.3))";
-                                                        
-                                                        // Stagger the effect slightly but more rapidly
-                                                        setTimeout(() => {
-                                                            vmRect.style.filter = "drop-shadow(0 0 1px rgba(0, 102, 204, 0.2))";
-                                                        }, 150 + (index * 75));
-                                                    });
-                                                }, 1200);
-                                            }
-                                        }, 1600);
-                                    }, 100);
+                                            element.style.transition = "opacity 0.5s ease-in-out";
+                                            element.style.opacity = "1";
+                                        }, i * 50);
+                                    });
                                     
-                                }, 4100);
+                                    // Add shine effect to converged server
+                                    setTimeout(() => {
+                                        const convergedRack = convergedGroup.querySelector('rect[x="' + (centerX - 60) + '"]');
+                                        if (convergedRack) {
+                                            convergedRack.classList.add('shine-animation');
+                                        }
+                                        
+                                        // Add subtle pulse to VM blocks
+                                        setTimeout(() => {
+                                            const vmRects = convergedGroup.querySelectorAll('rect[width="40"]');
+                                            vmRects.forEach((vmRect, index) => {
+                                                vmRect.style.transition = "filter 0.4s ease";
+                                                vmRect.style.filter = "drop-shadow(0 0 3px rgba(0, 102, 204, 0.3))";
+                                                
+                                                // Stagger the effect
+                                                setTimeout(() => {
+                                                    vmRect.style.filter = "drop-shadow(0 0 1px rgba(0, 102, 204, 0.2))";
+                                                }, 150 + (index * 75));
+                                            });
+                                        }, 1200);
+                                    }, 600);
+                                    
+                                }, 3000); // Wait for original animations to complete
                                 
                             }, 500);
                         });
@@ -681,31 +716,6 @@
                         <li>24/7 recovery assistance</li>
                     </ul>
                 </div>
-                
-                <div class="protection-card">
-                    <div class="icon">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 20L10 40L30 50L50 40L50 20" stroke="#0066CC" stroke-width="2" fill="none"/>
-                            <path d="M10 20L30 30L50 20" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M30 30L30 50" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M15 35L25 40L25 25L35 30L35 15L45 20" stroke="#0066CC" stroke-width="2" stroke-dasharray="0 0"/>
-                            <circle cx="25" cy="25" r="3" fill="#0066CC"/>
-                            <circle cx="35" cy="15" r="3" fill="#0066CC"/>
-                            <circle cx="45" cy="20" r="3" fill="#0066CC"/>
-                            <circle cx="15" cy="35" r="3" fill="#0066CC"/>
-                            <circle cx="25" cy="40" r="3" fill="#0066CC"/>
-                            <circle cx="35" cy="30" r="3" fill="#0066CC"/>
-                        </svg>
-                    </div>
-                    <h3>Disaster Recovery as a Service</h3>
-                    <p>Ensure business continuity with our enterprise-grade DRaaS solution that provides rapid workload recovery in the event of a disaster. Maintain operations with minimal disruption through our automated failover systems.</p>
-                    <ul class="feature-list">
-                        <li>Near-zero RTO and RPO capabilities</li>
-                        <li>Automated site failover orchestration</li>
-                        <li>Regular DR testing without disruption</li>
-                        <li>Multi-site geographic redundancy</li>
-                    </ul>
-                </div>
             </div>
             
             <div class="protection-info">
@@ -775,13 +785,13 @@
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 4H9L11 9L8 10.5C9.5 13.5 12.5 16.5 15.5 18L17 15L22 17V21C22 21.5523 21.5523 22 21 22C11.5 22 4 14.5 4 5C4 4.44772 4.44772 4 5 4Z" stroke="#0066CC" stroke-width="2" fill="none"/>
                         </svg>
-                        <p>+1 (888) 555-V2V2</p>
+                        <p>(440) 941-1150</p>
                     </div>
                     <div class="info-item">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM12 11.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke="#0066CC" stroke-width="2" fill="none"/>
                         </svg>
-                        <p>535 Mission Street, 14th Floor<br>San Francisco, CA 94105</p>
+                        <p>Westlake, OH 44145</p>
                     </div>
                     <div class="map-container">
                         <div id="contact-map"></div>

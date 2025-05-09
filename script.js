@@ -204,7 +204,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // Initialize the map when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize map
-    const map = L.map('contact-map').setView([37.7887459, -122.4019838], 16);
+    // Coordinates for Westlake, OH 44145 (approximate)
+    const map = L.map('contact-map').setView([41.4480, -81.9360], 13);
     
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -224,10 +225,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Add marker for office location
-    const marker = L.marker([37.7887459, -122.4019838], {
+    // Coordinates for Westlake, OH 44145 (approximate)
+    const marker = L.marker([41.4480, -81.9360], { 
         icon: customIcon
     }).addTo(map);
     
     // Add popup with address
-    marker.bindPopup('v2v.tech<br>535 Mission Street, 14th Floor<br>San Francisco, CA 94105').openPopup();
+    marker.bindPopup('v2v.tech<br>Westlake, OH 44145').openPopup();
 }); 
