@@ -201,6 +201,35 @@ document.addEventListener('DOMContentLoaded', () => {
     addAnimatedBackground();
 });
 
+// Burger Menu Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const burgerMenu = document.querySelector('.burger-menu');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-menu a');
+
+    // Toggle burger menu
+    burgerMenu.addEventListener('click', function() {
+        burgerMenu.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // Close menu when clicking on a link
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            burgerMenu.classList.remove('active');
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!burgerMenu.contains(event.target) && !navMenu.contains(event.target)) {
+            burgerMenu.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+});
+
 // Initialize the map when the DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize map
