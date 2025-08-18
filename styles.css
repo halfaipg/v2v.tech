@@ -849,7 +849,7 @@ footer::before {
     }
     
     header .container {
-        padding: 0 0.5rem;
+        padding: 0 1rem;
         justify-content: space-between; /* Keep logo left, burger right */
         height: 70px;
     }
@@ -893,8 +893,9 @@ footer::before {
     }
     
     header .container {
-        flex-direction: column;
-        padding: 15px 0;
+        flex-direction: row;
+        padding: 0 1rem;
+        justify-content: space-between;
     }
     
     nav ul {
