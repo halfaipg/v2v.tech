@@ -99,8 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // whenever a jump can have happened.
         revealInView();
         window.addEventListener('load', revealInView);
+        window.addEventListener('pageshow', revealInView);
         window.addEventListener('hashchange', revealInView);
-        window.addEventListener('scroll', revealInView, { passive: true });
     }
 
     /* Contact form ------------------------------------------------------------ */
@@ -129,7 +129,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
 
-            if (!valid) return;
+            if (!valid) {
+                contactForm.querySelectorAll('.form-response').forEach(el => el.remove());
+                const err = document.createElement('div');
+                err.className = 'form-response error';
+                err.setAttribute('role', 'alert');
+                err.textContent = 'Please fill in the highlighted fields.';
+                contactForm.appendChild(err);
+                return;
+            }
 
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             submitBtn.textContent = 'Sending...';
