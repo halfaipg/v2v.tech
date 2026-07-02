@@ -3,583 +3,263 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>v2v.tech - Professional Migration Services</title>
+    <title>v2v.tech - VMware exit and virtualization migration consulting</title>
+    <meta name="description" content="Independent consulting for VMware exits and virtualization migrations: V2V, P2V, cloud, VDI, backup and disaster recovery. Based in Westlake, Ohio.">
+    <meta property="og:title" content="v2v.tech - VMware exit and virtualization migration consulting">
+    <meta property="og:description" content="Independent consulting for VMware exits and virtualization migrations: V2V, P2V, cloud, VDI, backup and disaster recovery.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://v2v.tech/">
+    <meta property="og:image" content="https://v2v.tech/V2VDC.png">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- OpenStreetMap Dependencies -->
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="v2vdc-hero.jpg">
+    <!-- OpenStreetMap dependencies -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
 </head>
-<body>
+<body id="top">
+    <a class="skip-link" href="#main">Skip to content</a>
+
     <header>
-        <div class="container">
-            <div class="logo">
-                <svg width="180" height="40" viewBox="0 0 180 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Left angle bracket -->
-                    <path d="M20 10L10 20L20 30" stroke="#0066CC" stroke-width="2.5" stroke-linecap="round"/>
-                    <!-- Right angle bracket -->
-                    <path d="M160 10L170 20L160 30" stroke="#0066CC" stroke-width="2.5" stroke-linecap="round"/>
-                    <!-- V2V.TECH text -->
-                    <text x="35" y="29" font-family="Inter" font-weight="700" font-size="22" fill="#333333">V2V.TECH</text>
-                </svg>
-            </div>
-            <nav class="nav-menu">
+        <div class="container header-inner">
+            <a href="#top" class="brand">v2v<span class="brand-dim">.tech</span></a>
+            <nav class="nav-menu" id="site-nav" aria-label="Main">
                 <ul>
+                    <li><a href="#why">Why now</a></li>
                     <li><a href="#services">Services</a></li>
+                    <li><a href="#approach">Approach</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#benefits">Benefits</a></li>
-                    <li><a href="#migration-planning">Planning</a></li>
-                    <li><a href="#data-protection">Data Protection</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <div class="burger-menu">
+            <button class="burger-menu" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Expert Migration Solutions for Your IT Environment</h1>
-                <p>Specialized in V2V, P2V, and cloud migration technologies to optimize your virtualization infrastructure. Whether you're an enterprise facing renewal pressures or an SMB looking for cost-effective alternatives, we provide tailored migration strategies.</p>
-                <a href="#contact" class="btn">Contact Us</a>
-            </div>
-            <div class="hero-image">
-                <img src="V2VDC.png" alt="Virtualization and Data Center Migration Concept">
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="services">
-        <div class="container">
-            <h2>Our Migration Services</h2>
-            <div class="service-grid">
-                <div class="service-card">
-                    <div class="icon">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="10" y="15" width="15" height="30" rx="2" fill="#EEE" stroke="#0066CC" stroke-width="2"/>
-                            <rect x="35" y="15" width="15" height="30" rx="2" fill="#EEE" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M25 30H35" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M32 27L35 30L32 33" stroke="#0066CC" stroke-width="2"/>
-                        </svg>
+    <main id="main">
+        <section class="hero">
+            <div class="hero-bg" role="img" aria-label="Datacenter aisle lined with server racks"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <h1>Get off VMware before the next renewal.</h1>
+                    <p>Independent consulting for virtualization migrations: VMware to Proxmox, Hyper&#8209;V, Nutanix, or cloud. Every step assessed, rehearsed, reversible.</p>
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn">Discuss your migration</a>
+                        <a href="#services" class="text-link">See services</a>
                     </div>
-                    <h3>Enterprise Migration Solutions</h3>
-                    <p>Comprehensive migration strategies for large organizations facing renewal pressures. We help enterprises evaluate alternatives, calculate true TCO, and execute migrations with minimal business impact. Specialized in complex multi-site environments.</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="icon">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="10" y="20" width="15" height="25" rx="1" fill="#EEE" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M12 25H23" stroke="#0066CC" stroke-opacity="0.5" stroke-width="1.5"/>
-                            <path d="M12 30H23" stroke="#0066CC" stroke-opacity="0.5" stroke-width="1.5"/>
-                            <path d="M12 35H23" stroke="#0066CC" stroke-opacity="0.5" stroke-width="1.5"/>
-                            <rect x="35" y="15" width="15" height="30" rx="2" fill="#EEE" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M25 30H35" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M32 27L35 30L32 33" stroke="#0066CC" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>SMB Cost-Effective Alternatives</h3>
-                    <p>Budget-friendly migration solutions for small and medium businesses. We help SMBs transition to cost-effective virtualization platforms while maintaining reliability and support. Perfect for organizations looking to break free from expensive licensing models.</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="icon">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="10" y="15" width="15" height="30" rx="2" fill="#EEE" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M35 15C35 15 45 20 45 30C45 40 35 45 35 45" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M35 25C35 25 40 28 40 30C40 32 35 35 35 35" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M25 30H35" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M32 27L35 30L32 33" stroke="#0066CC" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>Cloud Migration Acceleration</h3>
-                    <p>Accelerate your cloud migration timeline with our specialized tools and expertise. Convert on-premise VMs to cloud instances without intermediary steps, maintaining consistency and performance. Ideal for organizations looking to reduce infrastructure costs.</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="icon">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 15C10 15 20 20 20 30C20 40 10 45 10 45" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M10 25C10 25 15 28 15 30C15 32 10 35 10 35" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M50 15C50 15 40 20 40 30C40 40 50 45 50 45" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M50 25C50 25 45 28 45 30C45 32 50 35 50 35" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M20 30H40" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M37 27L40 30L37 33" stroke="#0066CC" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>Multi-Platform Expertise</h3>
-                    <p>Comprehensive migration expertise across Windows, Linux, and hybrid environments. We understand the unique challenges of different platforms and provide solutions that maintain compatibility and performance regardless of your infrastructure mix.</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="icon">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="10" y="20" width="15" height="25" rx="1" fill="#EEE" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M12 25H23" stroke="#0066CC" stroke-opacity="0.5" stroke-width="1.5"/>
-                            <path d="M12 30H23" stroke="#0066CC" stroke-opacity="0.5" stroke-width="1.5"/>
-                            <path d="M12 35H23" stroke="#0066CC" stroke-opacity="0.5" stroke-width="1.5"/>
-                            <path d="M35 15C35 15 45 20 45 30C45 40 35 45 35 45" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M35 25C35 25 40 28 40 30C40 32 35 35 35 35" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M25 30H35" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M32 27L35 30L32 33" stroke="#0066CC" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>Hardware Refresh Migration</h3>
-                    <p>Time your migration with hardware refresh cycles to maximize cost efficiency. We help organizations plan migrations around hardware upgrades, ensuring optimal timing and minimal additional investment. Perfect for organizations planning infrastructure updates.</p>
-                </div>
-
-                <div class="service-card">
-                    <div class="icon">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 20L25 15L35 20L45 15V40L35 45L25 40L15 45V20Z" fill="#EEE" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M25 15V40" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M35 20V45" stroke="#0066CC" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>Vendor Lock-in Liberation</h3>
-                    <p>Break free from expensive vendor lock-in with our migration expertise. We help organizations transition to more cost-effective and flexible virtualization platforms while maintaining enterprise-grade reliability and support.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About v2v.tech</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>v2v.tech is a specialized IT consulting firm focusing on virtualization migration services. With years of experience in enterprise environments, our team provides expert migration solutions that address the real challenges organizations face when dealing with expensive renewals and vendor lock-in.</p>
-                    <p>We understand that migration projects can be complex and risky, especially when driven by cost pressures and tight timelines. That's why we've developed proven methodologies and tools to make your transition between virtualization platforms, physical infrastructure, and cloud environments as smooth as possible.</p>
-                    <p>Our in-house development team creates fully custom solutions and tools tailored to your specific migration needs. Whether it's automating complex workflows, building specialized conversion tools, or developing custom migration scripts, we ensure each solution perfectly fits your unique infrastructure requirements and business constraints.</p>
-                    <p>We work with organizations of all sizes - from SMBs looking for cost-effective alternatives to enterprises facing complex multi-site migrations. Our expertise spans Windows-heavy environments, Linux workloads, and hybrid cloud scenarios, ensuring we can handle any migration challenge you face.</p>
+        <section id="why" class="why">
+            <div class="container">
+                <div class="prose" data-reveal>
+                    <h2>The renewal math changed</h2>
+                    <p>Broadcom closed its acquisition of VMware in late 2023, ended perpetual licensing, and moved the product line into per&#8209;core subscription bundles. Many organizations opened their next renewal quote to find a number several times the last one.</p>
+                    <p>The alternatives are mature. KVM&#8209;based platforms, Hyper&#8209;V, and hyperconverged systems now run production workloads that once required vSphere. The hard part is not choosing a destination. It is moving live systems without breaking them.</p>
                 </div>
-                <div class="about-image">
-                    <svg width="100%" height="auto" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Background Elements -->
-                        <circle cx="200" cy="200" r="195" fill="#F5F9FF" />
-                        <circle cx="200" cy="200" r="170" fill="#E6F0FA" />
-                        
-                        <!-- Migration Flow Lines - Diagonal and dotted -->
-                        <line x1="110" y1="120" x2="180" y2="180" stroke="#0066CC" stroke-width="2" stroke-dasharray="6 4" />
-                        <line x1="290" y1="120" x2="220" y2="180" stroke="#0066CC" stroke-width="2" stroke-dasharray="6 4" />
-                        <line x1="110" y1="280" x2="180" y2="220" stroke="#0066CC" stroke-width="2" stroke-dasharray="6 4" />
-                        <line x1="290" y1="280" x2="220" y2="220" stroke="#0066CC" stroke-width="2" stroke-dasharray="6 4" />
-                        
-                        <!-- Virtual Machines - Left side -->
-                        <g transform="translate(60, 80) scale(0.85)">
-                            <rect x="0" y="0" width="60" height="80" rx="4" fill="white" stroke="#CCC" stroke-width="1.5" />
-                            <rect x="10" y="10" width="40" height="6" rx="1" fill="#0066CC" opacity="0.7" />
-                            <rect x="10" y="24" width="40" height="6" rx="1" fill="#0066CC" opacity="0.7" />
-                            <rect x="10" y="38" width="40" height="6" rx="1" fill="#0066CC" opacity="0.7" />
-                            <rect x="10" y="52" width="25" height="6" rx="1" fill="#0066CC" opacity="0.7" />
-                        </g>
-                        
-                        <g transform="translate(60, 260) scale(0.85)">
-                            <rect x="0" y="0" width="60" height="80" rx="4" fill="white" stroke="#CCC" stroke-width="1.5" />
-                            <rect x="10" y="10" width="40" height="6" rx="1" fill="#0066CC" opacity="0.7" />
-                            <rect x="10" y="24" width="40" height="6" rx="1" fill="#0066CC" opacity="0.7" />
-                            <rect x="10" y="38" width="40" height="6" rx="1" fill="#0066CC" opacity="0.7" />
-                            <rect x="10" y="52" width="25" height="6" rx="1" fill="#0066CC" opacity="0.7" />
-                        </g>
-                        
-                        <!-- Cloud Environment - Right side -->
-                        <g transform="translate(330, 60) scale(0.9)">
-                            <path d="M-60 40C-60 34 -57 29 -53 25C-49 21 -44 19 -39 19C-34 19 -30 21 -26 24C-25 20 -21 17 -17 16C-13 15 -9 15 -5 16C-1 17 1 20 4 24C6 28 7 32 7 35C11 36 15 39 17 43C19 47 21 52 21 57C21 62 19 66 15 70C11 74 6 77 0 77H-48C-54 77 -59 74 -63 70C-67 66 -70 62 -70 57C-70 52 -67 47 -63 43C-59 39 -54 36 -48 36" fill="white" />
-                            <path d="M-60 40C-60 34 -57 29 -53 25C-49 21 -44 19 -39 19C-34 19 -30 21 -26 24C-25 20 -21 17 -17 16C-13 15 -9 15 -5 16C-1 17 1 20 4 24C6 28 7 32 7 35C11 36 15 39 17 43C19 47 21 52 21 57C21 62 19 66 15 70C11 74 6 77 0 77H-48C-54 77 -59 74 -63 70C-67 66 -70 62 -70 57C-70 52 -67 47 -63 43C-59 39 -54 36 -48 36" stroke="#0066CC" stroke-width="1.5" fill="none" />
-                            <rect x="-15" y="35" width="12" height="12" rx="2" fill="white" stroke="#0066CC" stroke-width="1" />
-                            <rect x="-35" y="45" width="12" height="12" rx="2" fill="white" stroke="#0066CC" stroke-width="1" />
-                            <rect x="-55" y="40" width="12" height="12" rx="2" fill="white" stroke="#0066CC" stroke-width="1" />
-                        </g>
-                        
-                        <!-- Physical Server - Right side -->
-                        <g transform="translate(320, 260) scale(0.7)">
-                            <rect x="-40" y="0" width="70" height="90" rx="2" fill="#F0F0F0" stroke="#CCC" stroke-width="1.5" />
-                            <rect x="-35" y="10" width="60" height="10" rx="1" fill="white" stroke="#CCC" stroke-width="1" />
-                            <rect x="-35" y="30" width="60" height="10" rx="1" fill="white" stroke="#CCC" stroke-width="1" />
-                            <rect x="-35" y="50" width="60" height="10" rx="1" fill="white" stroke="#CCC" stroke-width="1" />
-                            <rect x="-35" y="70" width="60" height="10" rx="1" fill="white" stroke="#CCC" stroke-width="1" />
-                            
-                            <circle cx="-28" cy="15" r="2" fill="#0066CC" />
-                            <circle cx="-28" cy="35" r="2" fill="#0066CC" />
-                            <circle cx="-28" cy="55" r="2" fill="#0066CC" />
-                            <circle cx="-28" cy="75" r="2" fill="#0066CC" />
-                        </g>
-                        
-                        <!-- Central Element -->
-                        <g transform="translate(180, 180) scale(0.9)">
-                            <circle cx="20" cy="20" r="40" fill="white" stroke="#0066CC" stroke-width="2" />
-                            <path d="M10 5L0 20L10 35" stroke="#0066CC" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M30 5L40 20L30 35" stroke="#0066CC" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M15 0L25 40" stroke="#0066CC" stroke-width="2" stroke-linecap="round"/>
-                        </g>
-                    </svg>
+                <h3 class="grid-heading" data-reveal>Where teams are landing</h3>
+                <div class="platform-grid" data-reveal>
+                    <div class="platform-tile tile-featured">
+                        <h4>Proxmox VE</h4>
+                        <p>Open-source KVM and containers. No per&#8209;core hypervisor licensing; paid support is optional.</p>
+                    </div>
+                    <div class="platform-tile">
+                        <h4>Hyper&#8209;V and Azure Local</h4>
+                        <p>Often already covered by Windows Server licensing. The shortest hop for Windows&#8209;heavy estates.</p>
+                    </div>
+                    <div class="platform-tile">
+                        <h4>Nutanix AHV</h4>
+                        <p>Hyperconverged platform with its own hypervisor and first&#8209;party tooling for VMware exits.</p>
+                    </div>
+                    <div class="platform-tile">
+                        <h4>XCP&#8209;ng</h4>
+                        <p>Xen&#8209;based and open source, managed through Xen Orchestra, with a familiar feel for vSphere admins.</p>
+                    </div>
+                    <div class="platform-tile tile-tinted">
+                        <h4>Public cloud</h4>
+                        <p>AWS, Azure, or Google Cloud for workloads that fit consumption pricing better than owned hardware.</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="benefits" class="benefits">
-        <div class="container">
-            <h2>Benefits of Our Migration Services</h2>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="icon">
-                        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M25 10V40" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M40 25H10" stroke="#0066CC" stroke-width="2"/>
-                            <circle cx="25" cy="25" r="15" stroke="#0066CC" stroke-width="2" fill="none"/>
-                        </svg>
-                    </div>
-                    <h3>Cost Optimization</h3>
-                    <p>Break free from expensive licensing models and reduce your virtualization costs significantly. Our migration services help you transition to more cost-effective platforms while maintaining enterprise-grade reliability.</p>
+        <section id="services" class="services">
+            <div class="container">
+                <div class="section-head" data-reveal>
+                    <h2>What we do</h2>
+                    <p>One engagement can cover the whole move, or just the part your team does not have capacity for.</p>
                 </div>
-
-                <div class="benefit-card">
-                    <div class="icon">
-                        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 25L23 33L38 18" stroke="#0066CC" stroke-width="2"/>
-                            <circle cx="25" cy="25" r="15" stroke="#0066CC" stroke-width="2" fill="none"/>
-                        </svg>
-                    </div>
-                    <h3>Minimize Risk</h3>
-                    <p>Our proven migration methodologies ensure zero data loss and minimal downtime. We maintain 3 copies of your data throughout the process, including offsite backup. Comprehensive testing and validation at every step.</p>
+                <div class="service-lead" data-reveal>
+                    <h3>Hypervisor migration (V2V)</h3>
+                    <p>The core of the practice. We move virtual machines off vSphere and ESXi onto the platform you choose: conversion, drivers, storage, networking, and the cutover plan. Pilots run first on non&#8209;critical workloads; production moves in waves sized to your maintenance windows.</p>
                 </div>
-
-                <div class="benefit-card">
-                    <div class="icon">
-                        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="15" y="15" width="20" height="20" rx="2" stroke="#0066CC" stroke-width="2" fill="none"/>
-                            <path d="M15 35L10 40" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M35 35L40 40" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M15 15L10 10" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M35 15L40 10" stroke="#0066CC" stroke-width="2"/>
-                        </svg>
+                <div class="service-grid" data-reveal>
+                    <div class="service-item">
+                        <h3>Physical to virtual (P2V)</h3>
+                        <p>Aging physical servers converted into virtual machines on the new platform, so the migration and the hardware refresh happen once instead of twice.</p>
                     </div>
-                    <h3>Platform Flexibility</h3>
-                    <p>Support for all major virtualization formats and platforms, allowing seamless movement between environments. Whether you're moving to cloud, open-source alternatives, or different enterprise platforms, we've got you covered.</p>
+                    <div class="service-item">
+                        <h3>Cloud migration (V2C)</h3>
+                        <p>On-premises VMs converted directly to cloud instances where consumption pricing wins. Sizing, networking, and cost modeling included.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>VDI migration</h3>
+                        <p>Virtual desktop estates moved between Citrix, VMware Horizon, and Azure Virtual Desktop with user profiles and application compatibility intact.</p>
+                    </div>
+                    <div class="service-item">
+                        <h3>Backup, replication, and DR</h3>
+                        <p>Backup and replication on Veeam, Rubrik, or Commvault, designed alongside the migration with documented runbooks and scheduled recovery tests. Three copies of your data through every cutover.</p>
+                    </div>
                 </div>
-
-                <div class="benefit-card">
-                    <div class="icon">
-                        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M25 10V15" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M25 35V40" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M40 25H35" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M15 25H10" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M35 15L31 19" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M19 31L15 35" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M35 35L31 31" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M19 19L15 15" stroke="#0066CC" stroke-width="2"/>
-                            <circle cx="25" cy="25" r="10" stroke="#0066CC" stroke-width="2" fill="none"/>
-                        </svg>
-                    </div>
-                    <h3>DR Test Plan</h3>
-                    <p>We help you create comprehensive disaster recovery runbooks and conduct regular DR tests. Our experts ensure your recovery procedures are documented, tested, and validated to meet your RTO and RPO requirements.</p>
+                <div class="service-lead" data-reveal>
+                    <h3>Your backups have to move too</h3>
+                    <p>Backup jobs do not survive a hypervisor switch. Agents, snapshots, and replication all work differently once you leave vSphere, and a migration with no working restore path is a gamble. We rebuild data protection as part of the move: Veeam, Rubrik, or Commvault re-pointed at the new platform, immutable off-site copies, and restores tested before the old environment is retired. Want it managed for you afterward? That is our sister service, <a href="https://ohiobdr.com">Ohio BDR</a>.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="migration-planning" class="migration-planning">
-        <div class="container">
-            <h2>Migration Planning & Timing</h2>
-            <p class="section-intro">Strategic migration planning is crucial for minimizing costs and maximizing success. We help you identify the optimal timing and approach for your migration project.</p>
-            
-            <div class="planning-grid">
-                <div class="planning-card">
-                    <div class="icon">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="10" y="15" width="40" height="30" rx="2" fill="none" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M15 25H45" stroke="#0066CC" stroke-width="1.5"/>
-                            <path d="M15 30H45" stroke="#0066CC" stroke-width="1.5"/>
-                            <path d="M15 35H35" stroke="#0066CC" stroke-width="1.5"/>
-                            <circle cx="20" cy="20" r="2" fill="#0066CC"/>
-                            <circle cx="25" cy="20" r="2" fill="#0066CC"/>
-                            <circle cx="30" cy="20" r="2" fill="#0066CC"/>
-                        </svg>
-                    </div>
-                    <h3>Renewal Timing</h3>
-                    <p>Plan your migration around license renewal cycles to avoid unnecessary costs. We help you evaluate alternatives before committing to expensive renewals, ensuring you have time to execute a smooth transition.</p>
-                </div>
-
-                <div class="planning-card">
-                    <div class="icon">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="10" y="20" width="40" height="25" rx="2" fill="none" stroke="#0066CC" stroke-width="2"/>
-                            <rect x="15" y="25" width="30" height="5" rx="1" fill="#0066CC" opacity="0.3"/>
-                            <rect x="15" y="32" width="25" height="5" rx="1" fill="#0066CC" opacity="0.3"/>
-                            <rect x="15" y="39" width="20" height="5" rx="1" fill="#0066CC" opacity="0.3"/>
-                            <path d="M20 15L25 20L30 15" stroke="#0066CC" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>Hardware Refresh Alignment</h3>
-                    <p>Coordinate your migration with hardware refresh cycles to maximize cost efficiency. This approach minimizes additional investment while ensuring optimal performance for your new virtualization platform.</p>
-                </div>
-
-                <div class="planning-card">
-                    <div class="icon">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M30 10L50 20V40L30 50L10 40V20L30 10Z" stroke="#0066CC" stroke-width="2" fill="none"/>
-                            <path d="M30 30V50" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M10 20L30 30L50 20" stroke="#0066CC" stroke-width="2"/>
-                            <circle cx="30" cy="25" r="3" fill="#0066CC"/>
-                        </svg>
-                    </div>
-                    <h3>Phased Migration Strategy</h3>
-                    <p>Implement a phased approach starting with non-critical workloads to build confidence and expertise. This strategy reduces risk while allowing you to demonstrate value and gain organizational buy-in.</p>
-                </div>
-
-                <div class="planning-card">
-                    <div class="icon">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 20L25 15L35 20L45 15V40L35 45L25 40L15 45V20Z" fill="none" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M25 15V40" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M35 20V45" stroke="#0066CC" stroke-width="2"/>
-                            <circle cx="30" cy="30" r="3" fill="#0066CC"/>
-                        </svg>
-                    </div>
-                    <h3>TCO Analysis</h3>
-                    <p>Comprehensive total cost of ownership analysis including licensing, hardware, training, and operational costs. We help you make informed decisions by comparing the true costs of staying vs. migrating.</p>
-                </div>
-
-                <div class="planning-card">
-                    <div class="icon">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="10" y="15" width="40" height="30" rx="2" fill="none" stroke="#0066CC" stroke-width="2"/>
-                            <rect x="15" y="20" width="30" height="20" rx="1" fill="none" stroke="#0066CC" stroke-width="1.5"/>
-                            <path d="M20 25H35" stroke="#0066CC" stroke-width="1"/>
-                            <path d="M20 30H35" stroke="#0066CC" stroke-width="1"/>
-                            <path d="M20 35H30" stroke="#0066CC" stroke-width="1"/>
-                            <circle cx="25" cy="40" r="2" fill="#0066CC"/>
-                            <path d="M35 25L40 20" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M35 30L40 35" stroke="#0066CC" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>VDI Migration Expertise</h3>
-                    <p>Specialized migration services for virtual desktop infrastructure. We help organizations transition VDI workloads between platforms while maintaining user experience and application compatibility. Perfect for Citrix, VMware Horizon, and Azure Virtual Desktop migrations.</p>
-                </div>
-
-                <div class="planning-card">
-                    <div class="icon">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 20L25 15L35 20L45 15V40L35 45L25 40L15 45V20Z" fill="none" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M25 15V40" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M35 20V45" stroke="#0066CC" stroke-width="2"/>
-                            <rect x="20" y="25" width="20" height="15" rx="1" fill="none" stroke="#0066CC" stroke-width="1.5"/>
-                            <path d="M25 30H35" stroke="#0066CC" stroke-width="1"/>
-                            <path d="M25 35H35" stroke="#0066CC" stroke-width="1"/>
-                            <path d="M25 40H30" stroke="#0066CC" stroke-width="1"/>
-                            <circle cx="30" cy="45" r="1.5" fill="#0066CC"/>
-                        </svg>
-                    </div>
-                    <h3>Legacy Application Support</h3>
-                    <p>Preserve critical legacy applications during migration with our compatibility testing and remediation services. We ensure older applications continue to function properly in new environments, preventing business disruption and maintaining operational continuity.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="data-protection" class="data-protection">
-        <div class="container">
-            <h2>Enterprise Data Protection</h2>
-            <p class="section-intro">Safeguard your critical business data with our comprehensive protection solutions that ensure business continuity and rapid recovery.</p>
-            
-            <div class="protection-cards">
-                <div class="protection-card">
-                    <div class="icon">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M30 10L10 20V40L30 50L50 40V20L30 10Z" stroke="#0066CC" stroke-width="2" fill="none"/>
-                            <path d="M30 30V50" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M10 20L30 30L50 20" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M20 15L40 25" stroke="#0066CC" stroke-width="2" stroke-dasharray="2 2"/>
-                            <path d="M20 25L40 35" stroke="#0066CC" stroke-width="2" stroke-dasharray="2 2"/>
-                            <path d="M20 35L40 45" stroke="#0066CC" stroke-width="2" stroke-dasharray="2 2"/>
-                        </svg>
-                    </div>
-                    <h3>Multi-Site Replication</h3>
-                    <p>Ensure geographic redundancy with real-time or scheduled data replication across multiple sites. Our solutions offer flexible topologies including active-active, active-passive, and multi-target configurations to match your business needs.</p>
-                    <ul class="feature-list">
-                        <li>Automated failover and failback</li>
-                        <li>WAN optimization with deduplication</li>
-                        <li>Replication health monitoring</li>
-                        <li>Cross-platform compatibility</li>
-                    </ul>
-                </div>
-                
-                <div class="protection-card">
-                    <div class="icon">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="30" cy="30" r="20" stroke="#0066CC" stroke-width="2" fill="none"/>
-                            <path d="M30 10V30L40 40" stroke="#0066CC" stroke-width="2"/>
-                            <circle cx="30" cy="30" r="3" fill="#0066CC"/>
-                            <path d="M38 22L42 18M22 38L18 42M22 22L18 18M38 38L42 42" stroke="#0066CC" stroke-width="2"/>
-                        </svg>
-                    </div>
-                    <h3>Continuous Data Protection</h3>
-                    <p>Eliminate backup windows and achieve near-zero RPO with our Continuous Data Protection (CDP) solutions. Every change to your data is captured in real-time, allowing point-in-time recovery to any moment before a data loss incident.</p>
-                    <ul class="feature-list">
-                        <li>Block-level change tracking</li>
-                        <li>Application-consistent snapshots</li>
-                        <li>Granular recovery options</li>
-                        <li>Minimal performance impact</li>
-                    </ul>
-                </div>
-                
-                <div class="protection-card">
-                    <div class="icon">
-                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="10" y="15" width="40" height="30" rx="2" stroke="#0066CC" stroke-width="2" fill="none"/>
-                            <path d="M15 25H45" stroke="#0066CC" stroke-width="2"/>
-                            <path d="M15 35H45" stroke="#0066CC" stroke-width="2"/>
-                            <rect x="20" y="20" width="5" height="5" rx="1" fill="#0066CC"/>
-                            <rect x="20" y="30" width="5" height="5" rx="1" fill="#0066CC"/>
-                            <rect x="20" y="40" width="5" height="5" rx="1" fill="#0066CC"/>
-                            <path d="M35 10L25 50" stroke="#0066CC" stroke-width="2" stroke-dasharray="2 2"/>
-                        </svg>
-                    </div>
-                    <h3>Backup & Recovery as a Service</h3>
-                    <p>Simplify your data protection strategy with our fully managed BRaaS solutions. We handle everything from initial setup to ongoing management and testing, ensuring your data is always recoverable when you need it most.</p>
-                    <ul class="feature-list">
-                        <li>Immutable backups for ransomware protection</li>
-                        <li>Scheduled validation testing</li>
-                        <li>Compliance reporting and auditing</li>
-                        <li>24/7 recovery assistance</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="protection-info">
-                <div class="protection-stats">
-                    <div class="stat">
-                        <span class="value">99.99%</span>
-                        <span class="label">Recovery Success Rate</span>
-                    </div>
-                    <div class="stat">
-                        <span class="value">&lt;15min</span>
-                        <span class="label">Average RTO</span>
-                    </div>
-                    <div class="stat">
-                        <span class="value">24/7</span>
-                        <span class="label">Support Availability</span>
-                    </div>
-                </div>
-                <div class="protection-cta">
-                    <h3>Need a custom data protection solution?</h3>
-                    <p>Our experts will design a tailored strategy that meets your specific business requirements and compliance needs. We specialize in multi-tiered data protection architectures that scale with your business growth while maintaining regulatory compliance.
-                    <br><br>
-                    Our consultative approach ensures that recovery point and recovery time objectives are aligned with your organization's tolerance for data loss and downtime. 
-                    <br><br>
-                    From ransomware protection to disaster recovery planning, we provide comprehensive solutions backed by our 24/7 support team.</p>
-                    <a href="#contact" class="btn">Schedule a Consultation</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Contact Us</h2>
-            <div class="contact-content">
-                <div class="contact-form">
-                    <form id="contact-form">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
+        <section id="approach" class="approach">
+            <div class="container">
+                <h2 data-reveal>How an engagement runs</h2>
+                <ol class="steps">
+                    <li class="step" data-reveal>
+                        <span class="step-num" aria-hidden="true">1</span>
+                        <div>
+                            <h3>Assess</h3>
+                            <p>Inventory every VM, dependency, and license. Map workloads to candidate platforms and put real numbers on staying versus moving.</p>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                    </li>
+                    <li class="step" data-reveal>
+                        <span class="step-num" aria-hidden="true">2</span>
+                        <div>
+                            <h3>Pilot</h3>
+                            <p>Stand up the target platform and move a handful of non&#8209;critical workloads. Prove the tooling and the rollback path before production is touched.</p>
                         </div>
-                        <div class="form-group">
-                            <label for="company">Company</label>
-                            <input type="text" id="company" name="company">
+                    </li>
+                    <li class="step" data-reveal>
+                        <span class="step-num" aria-hidden="true">3</span>
+                        <div>
+                            <h3>Migrate in waves</h3>
+                            <p>Production moves in scheduled windows sized to what your team and your users can absorb. Every wave has a tested rollback.</p>
                         </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
+                    </li>
+                    <li class="step" data-reveal>
+                        <span class="step-num" aria-hidden="true">4</span>
+                        <div>
+                            <h3>Validate and cut over</h3>
+                            <p>Performance, backups, and monitoring confirmed on the new platform before the old one is switched off.</p>
                         </div>
-                        <div class="form-button-wrapper">
-                            <button type="submit" class="btn">Send Message</button>
+                    </li>
+                    <li class="step" data-reveal>
+                        <span class="step-num" aria-hidden="true">5</span>
+                        <div>
+                            <h3>Hand over</h3>
+                            <p>Documentation, runbooks, and training for your team. You should not need us to operate what we leave behind.</p>
                         </div>
-                    </form>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container about-grid">
+                <div class="prose" data-reveal>
+                    <h2>Who you're working with</h2>
+                    <p>v2v.tech is run by an engineer with more than 20 years in enterprise virtualization and datacenter work: building environments, consolidating them, and moving workloads between them. That includes VMware at scale, and the platforms most teams are moving to now.</p>
+                    <p>We are a Veeam partner and operate our own datacenter presence in Westlake, Ohio. The advice comes from running infrastructure, not just writing reports about it.</p>
                 </div>
-                <div class="contact-info">
-                    <div class="info-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 5H21V19H3V5Z" stroke="#0066CC" stroke-width="2" fill="none"/>
-                            <path d="M3 5L12 14L21 5" stroke="#0066CC" stroke-width="2"/>
-                        </svg>
-                        <p>info@v2v.tech</p>
+                <div class="fact-panel" data-reveal>
+                    <div class="fact">
+                        <span class="fact-value">20+ years</span>
+                        <span class="fact-label">Enterprise virtualization and datacenter experience</span>
                     </div>
-                    <div class="info-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 4H9L11 9L8 10.5C9.5 13.5 12.5 16.5 15.5 18L17 15L22 17V21C22 21.5523 21.5523 22 21 22C11.5 22 4 14.5 4 5C4 4.44772 4.44772 4 5 4Z" stroke="#0066CC" stroke-width="2" fill="none"/>
-                        </svg>
-                        <p>(440) 941-1150</p>
+                    <div class="fact">
+                        <span class="fact-value">Veeam partner</span>
+                        <span class="fact-label">Plus Rubrik and Commvault, whichever fits your environment</span>
                     </div>
-                    <div class="info-item">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM12 11.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" stroke="#0066CC" stroke-width="2" fill="none"/>
-                        </svg>
-                        <p>Westlake, OH 44145</p>
-                    </div>
-                    <div class="map-container">
-                        <div id="contact-map"></div>
+                    <div class="fact">
+                        <span class="fact-value">Westlake, Ohio</span>
+                        <span class="fact-label">Our own datacenter presence, not a mailbox</span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-head" data-reveal>
+                    <h2>Start the conversation</h2>
+                    <p>Tell us where your environment stands and when your renewal lands. We will lay out the realistic options, including the ones that do not involve us.</p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-form" data-reveal>
+                        <form id="contact-form" novalidate>
+                            <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" autocomplete="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" autocomplete="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Company <span class="optional">(optional)</span></label>
+                                <input type="text" id="company" name="company" autocomplete="organization">
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <div class="form-button-wrapper">
+                                <button type="submit" class="btn">Send message</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="contact-info" data-reveal>
+                        <div class="info-item">
+                            <span class="info-label">Email</span>
+                            <a href="mailto:info@v2v.tech">info@v2v.tech</a>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Phone</span>
+                            <a href="tel:+14409411150">(440) 941-1150</a>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Location</span>
+                            <p>Westlake, OH 44145</p>
+                        </div>
+                        <div class="map-container">
+                            <div id="contact-map"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <svg width="180" height="35" viewBox="0 0 180 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Left angle bracket -->
-                        <path d="M15 8L7 15L15 22" stroke="#0066CC" stroke-width="2" stroke-linecap="round"/>
-                        <!-- Right angle bracket -->
-                        <path d="M165 8L173 15L165 22" stroke="#0066CC" stroke-width="2" stroke-linecap="round"/>
-                        <!-- V2V.TECH text -->
-                        <text x="30" y="23" font-family="Inter" font-weight="700" font-size="18" fill="white">V2V.TECH</text>
-                    </svg>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Services</h4>
-                        <ul>
-                            <li><a href="#services">V2V Migration</a></li>
-                            <li><a href="#services">P2V Migration</a></li>
-                            <li><a href="#services">Cloud Migration</a></li>
-                            <li><a href="#services">Hypervisor Switch</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-column">
-                        <h4>Company</h4>
-                        <ul>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms of Service</a></li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="footer-top">
+                <a href="#top" class="brand">v2v<span class="brand-dim">.tech</span></a>
+                <p class="footer-tagline">Virtualization migration consulting</p>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 v2v.tech - All rights reserved</p>
+                <p class="footer-contact">info@v2v.tech &middot; (440) 941-1150 &middot; Westlake, OH 44145</p>
+                <p class="footer-copy">&copy; 2026 v2v.tech. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script src="script.js"></script>
 </body>
-</html> 
+</html>

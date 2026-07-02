@@ -1,82 +1,117 @@
-// Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', () => {
-    // Smooth scroll for navigation and buttons
-    const scrollLinks = document.querySelectorAll('a[href^="#"]');
-    scrollLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const targetId = link.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
+
+    /* Mobile navigation ---------------------------------------------------- */
+    const burgerMenu = document.querySelector('.burger-menu');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (burgerMenu && navMenu) {
+        const setMenu = (open) => {
+            burgerMenu.classList.toggle('active', open);
+            navMenu.classList.toggle('active', open);
+            burgerMenu.setAttribute('aria-expanded', String(open));
+        };
+
+        burgerMenu.addEventListener('click', () => {
+            setMenu(!navMenu.classList.contains('active'));
+        });
+
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => setMenu(false));
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!burgerMenu.contains(event.target) && !navMenu.contains(event.target)) {
+                setMenu(false);
             }
         });
-    });
 
-    // Animate service cards on scroll
-    const serviceCards = document.querySelectorAll('.service-card');
-    const benefitCards = document.querySelectorAll('.benefit-card');
-    
-    // Intersection Observer for animations
-    const appearOptions = {
-        threshold: 0.15,
-        rootMargin: "0px 0px -100px 0px"
-    };
-    
-    const appearOnScroll = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('appear');
-            observer.unobserve(entry.target);
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') setMenu(false);
         });
-    }, appearOptions);
-    
-    // Observe service cards
-    serviceCards.forEach(card => {
-        card.classList.add('fade-in');
-        appearOnScroll.observe(card);
-    });
-    
-    // Observe benefit cards
-    benefitCards.forEach(card => {
-        card.classList.add('fade-in');
-        appearOnScroll.observe(card);
-    });
-    
-    // Typewriter effect for hero heading
-    const heroHeading = document.querySelector('.hero-content h1');
-    if (heroHeading) {
-        // Remove typewriter effect - using CSS fade-in animation instead
-        heroHeading.style.opacity = 1;
     }
-    
-    // Interactive hover effects for SVG graphics
-    const svgElements = document.querySelectorAll('.icon svg path, .icon svg rect, .icon svg circle');
-    svgElements.forEach(element => {
-        element.addEventListener('mouseover', () => {
-            element.setAttribute('data-original-stroke', element.getAttribute('stroke'));
-            element.setAttribute('stroke', '#004C99');
-            element.style.transition = 'all 0.3s ease';
+
+    /* Header state (sentinel + IntersectionObserver, no scroll listener) ---- */
+    const header = document.querySelector('header');
+    if (header && 'IntersectionObserver' in window) {
+        const sentinel = document.createElement('div');
+        sentinel.style.cssText = 'position:absolute;top:0;left:0;width:1px;height:60px;pointer-events:none;';
+        document.body.prepend(sentinel);
+
+        new IntersectionObserver(([entry]) => {
+            header.classList.toggle('scrolled', !entry.isIntersecting);
+        }).observe(sentinel);
+    } else if (header) {
+        header.classList.add('scrolled');
+    }
+
+    /* Scrollspy: mark the nav link for the section in view ------------------ */
+    const navLinks = Array.from(document.querySelectorAll('.nav-menu a[href^="#"]'));
+    if (navLinks.length && 'IntersectionObserver' in window) {
+        const linkFor = {};
+        navLinks.forEach(link => { linkFor[link.getAttribute('href').slice(1)] = link; });
+
+        const spy = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                navLinks.forEach(l => l.classList.remove('active'));
+                const link = linkFor[entry.target.id];
+                if (link) link.classList.add('active');
+            });
+        }, { rootMargin: '-35% 0px -55% 0px' });
+
+        Object.keys(linkFor).forEach(id => {
+            const section = document.getElementById(id);
+            if (section) spy.observe(section);
         });
-        
-        element.addEventListener('mouseout', () => {
-            element.setAttribute('stroke', element.getAttribute('data-original-stroke'));
+    }
+
+    /* Reveal on scroll, only when the user allows motion --------------------- */
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealTargets = document.querySelectorAll('[data-reveal]');
+
+    if (!reduceMotion && revealTargets.length && 'IntersectionObserver' in window) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            });
+        }, { threshold: 0.05, rootMargin: '0px 0px -60px 0px' });
+
+        const revealInView = () => {
+            revealTargets.forEach(el => {
+                if (el.classList.contains('is-visible')) return;
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    el.classList.add('is-visible');
+                    revealObserver.unobserve(el);
+                }
+            });
+        };
+
+        revealTargets.forEach(el => {
+            el.classList.add('will-reveal');
+            revealObserver.observe(el);
         });
-    });
-    
-    // Form validation with feedback
-    const contactForm = document.querySelector('.contact-form form');
+
+        // Anchor deep-links scroll the page outside the observer's notice
+        // (the browser jumps to the fragment after load), so re-check
+        // whenever a jump can have happened.
+        revealInView();
+        window.addEventListener('load', revealInView);
+        window.addEventListener('hashchange', revealInView);
+        window.addEventListener('scroll', revealInView, { passive: true });
+    }
+
+    /* Contact form ------------------------------------------------------------ */
+    const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
-            // Simple validation
+
             let valid = true;
-            const formFields = contactForm.querySelectorAll('input, textarea');
-            
+            const formFields = contactForm.querySelectorAll('input:not([name="website"]), textarea');
+
             formFields.forEach(field => {
                 if (field.hasAttribute('required') && !field.value.trim()) {
                     field.classList.add('error');
@@ -84,7 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else {
                     field.classList.remove('error');
                 }
-                
+
                 if (field.type === 'email' && field.value) {
                     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
                     if (!emailPattern.test(field.value)) {
@@ -93,172 +128,78 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             });
-            
-            if (valid) {
-                // Simulate form submission
-                const submitBtn = contactForm.querySelector('button[type="submit"]');
-                submitBtn.innerHTML = 'Sending...';
-                submitBtn.disabled = true;
-                
-                // Fake API call to simulate form submission
-                setTimeout(() => {
-                    const formResponse = document.createElement('div');
-                    formResponse.className = 'form-response success';
-                    formResponse.innerHTML = 'Thank you for your message! We\'ll be in touch soon.';
-                    contactForm.appendChild(formResponse);
-                    
-                    submitBtn.innerHTML = 'Send Message';
+
+            if (!valid) return;
+
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+
+            const showResponse = (ok, text) => {
+                contactForm.querySelectorAll('.form-response').forEach(el => el.remove());
+                const formResponse = document.createElement('div');
+                formResponse.className = 'form-response ' + (ok ? 'success' : 'error');
+                formResponse.setAttribute('role', 'status');
+                formResponse.textContent = text;
+                contactForm.appendChild(formResponse);
+                setTimeout(() => formResponse.remove(), 8000);
+            };
+
+            fetch('https://contact-relay-ai-power-grids-projects.vercel.app/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    site: 'v2v.tech',
+                    name: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    company: document.getElementById('company').value,
+                    message: document.getElementById('message').value,
+                    website: contactForm.querySelector('input[name="website"]')?.value || ''
+                })
+            })
+                .then(r => r.json())
+                .then(data => {
+                    showResponse(!!data.success, data.message || (data.success
+                        ? 'Message sent. We will get back to you shortly.'
+                        : 'We could not send your message. Please email info@v2v.tech directly.'));
+                    if (data.success) contactForm.reset();
+                })
+                .catch(() => {
+                    showResponse(false, 'We could not send your message. Please email info@v2v.tech directly.');
+                })
+                .finally(() => {
+                    submitBtn.textContent = 'Send message';
                     submitBtn.disabled = false;
-                    
-                    // Reset form
-                    contactForm.reset();
-                    
-                    // Remove the success message after 5 seconds
-                    setTimeout(() => {
-                        formResponse.remove();
-                    }, 5000);
-                }, 1500);
-            }
+                });
         });
     }
-    
-    // Sticky header with background change on scroll
-    const header = document.querySelector('header');
-    const heroSection = document.querySelector('.hero');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
-    
-    // Animated counter for statistics (can be added to the about section)
-    function animateCounter(element, target, duration) {
-        let start = 0;
-        const step = timestamp => {
-            if (!start) start = timestamp;
-            const progress = Math.min((timestamp - start) / duration, 1);
-            element.textContent = Math.floor(progress * target);
-            
-            if (progress < 1) {
-                window.requestAnimationFrame(step);
-            } else {
-                element.textContent = target;
-            }
-        };
-        
-        window.requestAnimationFrame(step);
-    }
-    
-    // Create and add statistics section
-    const createStatsSection = () => {
-        // Remove stats section - don't create it anymore
-        return;
+
+    /* Map (Leaflet loads deferred; wait for it if needed) ---------------------- */
+    const initMap = () => {
+        const mapEl = document.getElementById('contact-map');
+        if (!mapEl || typeof L === 'undefined') return false;
+
+        const map = L.map('contact-map', { scrollWheelZoom: false })
+            .setView([41.4480, -81.9360], 12);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        const marker = L.circleMarker([41.4480, -81.9360], {
+            radius: 9,
+            color: '#5b9bd9',
+            weight: 2,
+            fillColor: '#5b9bd9',
+            fillOpacity: 0.35
+        }).addTo(map);
+
+        marker.bindPopup('v2v.tech<br>Westlake, OH 44145');
+        return true;
     };
-    
-    // Add the statistics section
-    createStatsSection();
-    
-    // Add parallax effect to hero section
-    if (heroSection) {
-        window.addEventListener('scroll', () => {
-            const scrollValue = window.scrollY;
-            heroSection.style.backgroundPositionY = scrollValue * 0.5 + 'px';
-        });
+
+    if (!initMap()) {
+        window.addEventListener('load', initMap, { once: true });
     }
-    
-    // Add animated background to services section
-    const addAnimatedBackground = () => {
-        const servicesSection = document.querySelector('.services');
-        if (!servicesSection) return;
-        
-        const backgroundCanvas = document.createElement('div');
-        backgroundCanvas.className = 'animated-background';
-        
-        for (let i = 0; i < 15; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            
-            // Random positioning and animation duration
-            const size = Math.floor(Math.random() * 30) + 10;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.top = `${Math.random() * 100}%`;
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.opacity = Math.random() * 0.2 + 0.1;
-            particle.style.animationDuration = `${Math.random() * 20 + 10}s`;
-            particle.style.animationDelay = `${Math.random() * 10}s`;
-            
-            backgroundCanvas.appendChild(particle);
-        }
-        
-        servicesSection.insertBefore(backgroundCanvas, servicesSection.firstChild);
-    };
-    
-    // Add the animated background
-    addAnimatedBackground();
 });
-
-// Burger Menu Functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const burgerMenu = document.querySelector('.burger-menu');
-    const navMenu = document.querySelector('.nav-menu');
-    const navLinks = document.querySelectorAll('.nav-menu a');
-
-    // Toggle burger menu
-    burgerMenu.addEventListener('click', function() {
-        burgerMenu.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
-
-    // Close menu when clicking on a link
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            burgerMenu.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-        if (!burgerMenu.contains(event.target) && !navMenu.contains(event.target)) {
-            burgerMenu.classList.remove('active');
-            navMenu.classList.remove('active');
-        }
-    });
-});
-
-// Initialize the map when the DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize map
-    // Coordinates for Westlake, OH 44145 (approximate)
-    const map = L.map('contact-map').setView([41.4480, -81.9360], 13);
-    
-    // Add OpenStreetMap tiles
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19,
-        attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
-    
-    // Add custom marker
-    const customIcon = L.divIcon({
-        className: 'custom-map-marker',
-        html: `<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="20" cy="20" r="10" fill="#0066CC"/>
-                <circle cx="20" cy="20" r="18" fill="#0066CC" fill-opacity="0.2"/>
-              </svg>`,
-        iconSize: [40, 40],
-        iconAnchor: [20, 20]
-    });
-    
-    // Add marker for office location
-    // Coordinates for Westlake, OH 44145 (approximate)
-    const marker = L.marker([41.4480, -81.9360], { 
-        icon: customIcon
-    }).addTo(map);
-    
-    // Add popup with address
-    marker.bindPopup('v2v.tech<br>Westlake, OH 44145').openPopup();
-}); 
