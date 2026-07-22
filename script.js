@@ -139,6 +139,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
+            const turnstileToken = contactForm.querySelector('input[name="cf-turnstile-response"]')?.value || '';
+            if (!turnstileToken) {
+                contactForm.querySelectorAll('.form-response').forEach(el => el.remove());
+                const err = document.createElement('div');
+                err.className = 'form-response error';
+                err.setAttribute('role', 'alert');
+                err.textContent = 'Please complete the verification and try again.';
+                contactForm.appendChild(err);
+                return;
+            }
+
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
@@ -162,7 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     email: document.getElementById('email').value,
                     company: document.getElementById('company').value,
                     message: document.getElementById('message').value,
-                    website: contactForm.querySelector('input[name="website"]')?.value || ''
+                    website: contactForm.querySelector('input[name="website"]')?.value || '',
+                    'cf-turnstile-response': turnstileToken
                 })
             })
                 .then(r => r.json())
@@ -178,6 +190,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 .finally(() => {
                     submitBtn.textContent = 'Send message';
                     submitBtn.disabled = false;
+                    if (window.turnstile) window.turnstile.reset();
                 });
         });
     }

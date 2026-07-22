@@ -25,6 +25,7 @@
     <!-- OpenStreetMap dependencies -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body id="top">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -225,6 +226,7 @@
                                 <label for="message">Message</label>
                                 <textarea id="message" name="message" rows="5" required></textarea>
                             </div>
+                            <div class="cf-turnstile" data-sitekey="0x4AAAAAAD63sZ4jDrY-yiAd" data-action="turnstile-spin-v2" data-theme="dark" data-size="flexible"></div>
                             <div class="form-button-wrapper">
                                 <button type="submit" class="btn">Send message</button>
                             </div>
